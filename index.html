@@ -42,7 +42,7 @@ a{text-decoration:none;color:inherit}
 .btn-ghost::before{background:#fff}
 .btn-ghost:hover{color:var(--navy)}
 
-.eyebrow{font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;display:inline-flex;align-items:center;gap:12px}
+.eyebrow{font-size:14px;font-weight:700;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;display:inline-flex;align-items:center;gap:12px}
 .eyebrow::before{content:'';width:24px;height:1px;background:var(--gold)}
 
 /* Hero */
@@ -50,7 +50,7 @@ a{text-decoration:none;color:inherit}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(193,154,74,.15),transparent 50%),radial-gradient(ellipse at 15% 80%,rgba(40,80,140,.2),transparent 55%),var(--navy-deep);z-index:0}
 .hero-bg-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.14;filter:brightness(.4) grayscale(.8) sepia(.4);mix-blend-mode:luminosity;z-index:0;pointer-events:none}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse at center,black,transparent 80%);z-index:0;pointer-events:none}
-#hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
 .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center;padding:110px 0;width:min(1200px,calc(100% - 48px));margin:auto}
 .hero h1{font-family:'Fraunces',serif;font-size:clamp(46px,6.4vw,82px);line-height:.96;letter-spacing:-.04em;font-weight:400;margin:24px 0}
 .hero h1 em{font-style:italic;color:var(--gold-light);font-weight:300}
@@ -76,14 +76,16 @@ a{text-decoration:none;color:inherit}
 .trust-item::before{content:'';width:6px;height:6px;background:var(--navy-deep);border-radius:50%}
 
 /* Sections */
-.section{padding:120px 0;position:relative}
+.section{padding:84px 0;position:relative}
 .section-head{margin-bottom:56px}
 .section-head h2{font-family:'Fraunces',serif;font-size:clamp(38px,4.8vw,62px);line-height:1.02;letter-spacing:-.035em;font-weight:400;margin:18px 0 0}
 
 /* About */
 .about{display:grid;grid-template-columns:.85fr 1.15fr;gap:90px;align-items:start}
 .about-sticky{position:sticky;top:120px}
-.about-image{width:100%;height:300px;object-fit:cover;margin-bottom:32px;filter:grayscale(.4) sepia(.18) contrast(1.05) brightness(.95);display:block}
+.about-visual{width:100%;height:300px;margin-top:32px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--navy),var(--navy-deep));position:relative;overflow:hidden}
+.about-visual::after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(217,174,101,.15),transparent 60%)}
+.about-visual svg{width:62%;height:auto;position:relative;z-index:1;filter:drop-shadow(0 20px 40px rgba(8,28,54,.35))}
 .about h2{font-family:'Fraunces',serif;font-size:clamp(40px,5vw,64px);line-height:1.02;letter-spacing:-.035em;font-weight:400;margin:18px 0}
 .about h2 em{font-style:italic;color:var(--gold)}
 .about-body p{font-size:17px;line-height:1.75;color:#4a5a6c;margin:0 0 22px}
@@ -111,6 +113,10 @@ a{text-decoration:none;color:inherit}
 .service-no{font-size:11px;letter-spacing:.15em;color:var(--gold);font-weight:700;text-transform:uppercase}
 .service-icon{width:56px;height:56px;display:grid;place-items:center;background:var(--navy);color:var(--gold-light);margin:28px 0 24px;font-size:22px;font-family:'Fraunces',serif;transition:transform .4s}
 .service:hover .service-icon{transform:translateZ(25px);background:var(--gold);color:#fff}
+.service-icon svg,.principle-icon svg,.coverage-item-icon svg{stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;display:block}
+.service-icon svg{width:26px;height:26px}
+.principle-icon svg{width:26px;height:26px}
+.coverage-item-icon svg{width:18px;height:18px}
 .service h3{font-family:'Fraunces',serif;font-size:30px;font-weight:500;letter-spacing:-.02em;margin:0 0 18px}
 .service-desc{font-size:14px;line-height:1.65;color:var(--muted);margin:0 0 28px}
 .service ul{list-style:none;padding:0;margin:0 0 32px;border-top:1px solid var(--line)}
@@ -158,9 +164,9 @@ a{text-decoration:none;color:inherit}
 .principles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:56px}
 .principle{padding:36px;background:#fff;position:relative;transition:background .3s}
 .principle:hover{background:var(--paper)}
-.principle:hover .principle-icon{transform:scale(1.1) rotate(5deg)}
 .principle-num{font-family:'Fraunces',serif;font-size:12px;color:var(--gold);font-weight:600;letter-spacing:.1em}
-.principle-icon{width:40px;height:40px;margin:14px 0;display:grid;place-items:center;font-size:18px;font-family:'Fraunces',serif;color:var(--navy);transition:transform .4s}
+.principle-icon{width:56px;height:56px;border-radius:50%;background:var(--paper);border:1px solid var(--line);margin:16px 0;display:grid;place-items:center;color:var(--navy);transition:transform .4s,background .3s,border-color .3s}
+.principle:hover .principle-icon{transform:scale(1.08) rotate(5deg);background:var(--navy);border-color:var(--navy);color:var(--gold-light)}
 .principle h3{font-family:'Fraunces',serif;font-size:22px;font-weight:500;letter-spacing:-.02em;margin:0 0 8px}
 .principle p{font-size:13px;color:var(--muted);line-height:1.6;margin:0}
 
@@ -169,7 +175,8 @@ a{text-decoration:none;color:inherit}
 .coverage-card{background:#fff;padding:48px;border-top:6px solid var(--gold);box-shadow:0 20px 50px rgba(8,28,54,.08);position:relative}
 .coverage-card .big{display:block;font-family:'Fraunces',serif;font-size:64px;font-weight:500;letter-spacing:-.04em;line-height:1;margin:8px 0 16px}
 .coverage-card p{font-size:14px;line-height:1.7;color:var(--muted)}
-.coverage-image{width:100%;height:220px;object-fit:cover;margin-bottom:28px;filter:grayscale(.4) sepia(.15) contrast(1.05);display:block}
+.coverage-visual{width:100%;height:340px;margin-bottom:28px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--navy),var(--navy-deep));position:relative;overflow:hidden}
+.coverage-visual svg{height:88%;width:auto}
 .coverage-list{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
 .coverage-item{padding:20px 0;border-top:1px solid var(--line);display:flex;align-items:center;gap:14px}
 .coverage-item:nth-last-child(-n+2){border-bottom:1px solid var(--line)}
@@ -203,7 +210,7 @@ a{text-decoration:none;color:inherit}
 .report-foot{margin-top:22px;background:var(--light);padding:12px;font-size:9px;color:var(--muted);text-align:center;letter-spacing:.1em}
 
 /* CTA */
-.cta{background:linear-gradient(135deg,var(--navy),var(--navy-deep));color:#fff;text-align:center;padding:140px 0;position:relative;overflow:hidden}
+.cta{background:linear-gradient(135deg,var(--navy),var(--navy-deep));color:#fff;text-align:center;padding:96px 0;position:relative;overflow:hidden}
 .cta-bg-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.14;filter:brightness(.3) grayscale(.8) sepia(.4);z-index:0;pointer-events:none}
 .cta::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(193,154,74,.15),transparent 60%);z-index:1}
 .cta::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at center,black,transparent 70%);z-index:1;pointer-events:none}
@@ -213,6 +220,24 @@ a{text-decoration:none;color:inherit}
 .cta h2 em{font-style:italic;color:var(--gold-light);font-weight:300}
 .cta p{font-size:17px;color:#a8b5c4;max-width:540px;margin:0 auto 36px;line-height:1.65}
 .cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.cta-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:64px;align-items:start;text-align:left}
+.cta-copy .eyebrow{justify-content:flex-start}
+.cta-direct{margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.15);font-size:13px;color:#a8b5c4;display:flex;flex-direction:column;gap:6px}
+.cta-direct-link{color:var(--gold-light);font-weight:600;font-size:15px}
+.contact-form{background:rgba(255,255,255,.05);border:1px solid rgba(217,174,101,.25);backdrop-filter:blur(14px);padding:32px;text-align:left}
+.form-head{margin-bottom:18px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#a8b5c4;margin-bottom:6px}
+.contact-form input,.contact-form select,.contact-form textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);color:#fff;padding:11px 12px;font-family:'Inter',sans-serif;font-size:14px;border-radius:2px}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:#7889a0}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{outline:none;border-color:var(--gold)}
+.contact-form select{color-scheme:light}
+.contact-form option{color:#0e213c;background:#fff}
+.contact-form textarea{resize:vertical}
+.form-note{font-size:11px;color:#8a99ad;line-height:1.6;margin:14px 0 0}
+.form-note a{color:var(--gold-light)}
+@media(max-width:900px){.cta-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}}
 
 /* Footer — no brand-mark, just wordmark */
 .footer{background:var(--navy-deep);color:#8a99ad;padding:64px 0 24px}
@@ -242,7 +267,7 @@ a{text-decoration:none;color:inherit}
   .principles-grid,.findings-grid{grid-template-columns:repeat(2,1fr)}
   .footer-grid{grid-template-columns:1fr 1fr}
   .about-pillars{grid-template-columns:1fr}
-  .section{padding:80px 0}
+  .section{padding:64px 0}
   .about-sticky{position:static}
   .coverage-list{grid-template-columns:1fr}
   .about-image{height:220px}
@@ -265,7 +290,7 @@ a{text-decoration:none;color:inherit}
     <div class="links">
       <a href="#about">Approach</a>
       <a href="#services">Services</a>
-      <a href="#methodology">Methodology</a>
+      <a href="#methodology">How We Work</a>
       <a href="#findings">Findings</a>
       <a href="#contact" class="btn"><span>Request Consultation</span></a>
     </div>
@@ -276,9 +301,7 @@ a{text-decoration:none;color:inherit}
 
   <section class="hero">
     <div class="hero-bg"></div>
-    <img class="hero-bg-image" src="https://picsum.photos/seed/veristra-architecture/1920/1080" alt="" loading="eager">
     <div class="hero-grid"></div>
-    <canvas id="hero-canvas"></canvas>
 
     <div class="hero-inner">
       <div class="hero-content">
@@ -296,6 +319,7 @@ a{text-decoration:none;color:inherit}
       </div>
 
       <div class="hero-art">
+        <canvas id="hero-canvas"></canvas>
         <div class="float-card a"><b>Property</b>7 holdings · 3 states</div>
         <div class="float-card b"><b>Corporate</b>4 active directorships</div>
         <div class="float-card c"><b>Intellectual Property</b>12 trademark classes</div>
@@ -316,13 +340,35 @@ a{text-decoration:none;color:inherit}
   <section class="section" id="about">
     <div class="wrap about">
       <div class="about-sticky">
-        <img class="about-image" src="https://picsum.photos/seed/veristra-records-archive/600/750" alt="Archival records and documented findings" loading="lazy">
         <div class="eyebrow">The Veristra approach</div>
         <h2>Truth lives in <em>the records.</em></h2>
+        <div class="about-visual reveal">
+          <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Layered official records verified and confirmed">
+            <g transform="rotate(-6 200 160)"><rect x="92" y="42" width="216" height="272" rx="4" fill="#0e213c" opacity=".3"/></g>
+            <g transform="rotate(3 200 160)"><rect x="86" y="36" width="216" height="272" rx="4" fill="#13294d" opacity=".5"/></g>
+            <rect x="90" y="30" width="220" height="278" rx="4" fill="#faf8f3"/>
+            <rect x="90" y="30" width="220" height="7" rx="3.5" fill="#c19a4a"/>
+            <rect x="114" y="66" width="128" height="7" rx="3.5" fill="#d7dde1"/>
+            <rect x="114" y="88" width="168" height="7" rx="3.5" fill="#d7dde1"/>
+            <rect x="114" y="110" width="146" height="7" rx="3.5" fill="#d7dde1"/>
+            <rect x="114" y="140" width="168" height="4" rx="2" fill="#edf2f4"/>
+            <rect x="114" y="152" width="168" height="4" rx="2" fill="#edf2f4"/>
+            <rect x="114" y="164" width="118" height="4" rx="2" fill="#edf2f4"/>
+            <rect x="114" y="190" width="168" height="4" rx="2" fill="#edf2f4"/>
+            <rect x="114" y="202" width="168" height="4" rx="2" fill="#edf2f4"/>
+            <rect x="114" y="214" width="88" height="4" rx="2" fill="#edf2f4"/>
+            <rect x="114" y="240" width="168" height="4" rx="2" fill="#edf2f4"/>
+            <rect x="114" y="252" width="140" height="4" rx="2" fill="#edf2f4"/>
+            <circle cx="292" cy="272" r="36" fill="#081c36"/>
+            <circle cx="292" cy="272" r="36" fill="none" stroke="#c19a4a" stroke-width="2"/>
+            <path d="M276 272l11 11l23 -25" fill="none" stroke="#e8c378" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
       </div>
       <div class="about-body">
         <p>Veristra draws from <strong>veritas</strong> — truth — and <strong>stratum</strong>, a layer of record. The name reflects our foundational conviction: reliable findings emerge from examining layered official records, not from inference, surveillance or field observation.</p>
         <p>We systematically identify immovable property, corporate holdings and intellectual property assets across Indian jurisdictions — building a documented foundation for the decisions institutions, counsel and investors cannot afford to get wrong.</p>
+        <p>Every finding is categorised strictly as <strong>confirmed</strong> or <strong>indicative</strong>, in line with the evidentiary standard of the underlying source — so you always know exactly how much weight a finding can bear.</p>
 
         <div class="about-pillars">
           <div class="pillar">
@@ -371,14 +417,14 @@ a{text-decoration:none;color:inherit}
       <div class="services">
         <article class="service" id="iat">
           <div class="service-no">01 / Individual</div>
-          <div class="service-icon">◐</div>
+          <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></div>
           <h3>Individual Asset Tracing</h3>
           <p class="service-desc">Identify immovable properties, corporate interests, intellectual property holdings and connected business relationships linked to a named individual.</p>
           <ul>
             <li>Identity profiling & alias mapping</li>
             <li>Directorship & business associations</li>
-            <li>Property ownership search</li>
-            <li>Historical property transfers</li>
+            <li>Property ownership search (including inherited properties)</li>
+            <li>Historical property transfers (past 10 years)</li>
             <li>Family-linked asset identification</li>
             <li>Trademark & patent search</li>
             <li>Indicative asset intelligence summary</li>
@@ -388,7 +434,7 @@ a{text-decoration:none;color:inherit}
 
         <article class="service" id="cat">
           <div class="service-no">02 / Company</div>
-          <div class="service-icon">◆</div>
+          <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2M10 21v-4h4v4"/></svg></div>
           <h3>Company Asset Tracing</h3>
           <p class="service-desc">Develop a comprehensive view of a company's corporate structure, property holdings, financial profile and intellectual property portfolio.</p>
           <ul>
@@ -396,7 +442,7 @@ a{text-decoration:none;color:inherit}
             <li>Directors, partners & signatories</li>
             <li>Shareholding analysis</li>
             <li>Property intelligence</li>
-            <li>Historical asset transfers</li>
+            <li>Historical asset transfers (past 10 years)</li>
             <li>Financial profiling</li>
             <li>Trademark & patent portfolio</li>
             <li>Indicative asset summary</li>
@@ -498,37 +544,37 @@ a{text-decoration:none;color:inherit}
       <div class="principles-grid">
         <article class="principle">
           <div class="principle-num">01</div>
-          <div class="principle-icon">⛨</div>
+          <div class="principle-icon"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5.2-3.6 8.7-8 10-4.4-1.3-8-4.8-8-10V6l8-4z"/><path d="M8.5 12l2.3 2.3L16 9.5"/></svg></div>
           <h3>Confidential</h3>
           <p>Assignments are handled with discretion from brief through reporting. Subject engagement is never initiated.</p>
         </article>
         <article class="principle">
           <div class="principle-num">02</div>
-          <div class="principle-icon">▤</div>
+          <div class="principle-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M4 21V10M20 21V10M7 21V10M11 21V10M13 21V10M17 21V10M2 10l10-6 10 6"/></svg></div>
           <h3>Government-backed sources</h3>
           <p>Findings are grounded in official and public regulatory records — not inference, hearsay or field observation.</p>
         </article>
         <article class="principle">
           <div class="principle-num">03</div>
-          <div class="principle-icon">◐</div>
+          <div class="principle-icon"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div>
           <h3>Pan-India coverage</h3>
           <p>Digital record research conducted across applicable jurisdictions throughout India, where online access permits.</p>
         </article>
         <article class="principle">
           <div class="principle-num">04</div>
-          <div class="principle-icon">⚔</div>
+          <div class="principle-icon"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5M7.5 10l1.8 1.8L13 8.3"/></svg></div>
           <h3>Evidence-led</h3>
           <p>Every relevant finding carries a clear source trail in the report appendix — verifiable, traceable, defensible.</p>
         </article>
         <article class="principle">
           <div class="principle-num">05</div>
-          <div class="principle-icon">▦</div>
+          <div class="principle-icon"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/><path d="M9 12h8M9 16h8M9 8h3"/></svg></div>
           <h3>Professional reports</h3>
           <p>Structured intelligence designed for counsel, institutions and decision-makers — formatted for review and sharing.</p>
         </article>
         <article class="principle">
           <div class="principle-num">06</div>
-          <div class="principle-icon">◷</div>
+          <div class="principle-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
           <h3>Fixed turnaround</h3>
           <p>Most assignments delivered within 10–14 working days. Timelines confirmed at scope, with status updates.</p>
         </article>
@@ -544,32 +590,59 @@ a{text-decoration:none;color:inherit}
         <p>Searches are conducted across applicable jurisdictions using online accessible records. The scope is fully desktop-based and excludes physical verification, field visits or subject contact.</p>
       </div>
       <div>
-        <img class="coverage-image" src="https://picsum.photos/seed/veristra-city-coverage/800/500" alt="Pan-India urban coverage" loading="lazy">
+        <div class="coverage-visual reveal">
+          <svg viewBox="0 0 300 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stylised map of India with record-source coverage points">
+            <path d="M130 8 C150 5 170 10 178 22 C190 30 205 35 215 42 L235 55 C250 65 258 78 252 92 C270 88 285 95 292 108 C288 122 270 128 255 122 C248 135 252 148 240 155 L215 150 C210 170 205 190 200 215 C198 235 195 255 190 275 C185 290 178 300 170 312 C162 322 155 330 148 338 C142 330 136 320 130 308 C122 292 118 275 114 258 C110 240 108 222 105 205 C100 188 96 170 92 152 C85 138 75 128 65 120 C55 112 48 100 45 85 C42 72 48 62 58 58 C65 50 72 42 78 32 C88 22 100 14 112 10 Z"
+                  fill="#0e213c" stroke="#c19a4a" stroke-width="1.4" opacity="0.9"/>
+            <g fill="none" stroke="#d9ae65" stroke-width=".5" opacity=".3">
+              <path d="M60 60L240 60M55 100L250 100M55 150L235 150M65 200L210 200M85 250L190 250M105 300L165 300"/>
+            </g>
+            <g stroke="#faf8f3" stroke-width="1.6">
+              <line x1="150" y1="90" x2="150" y2="70"/>
+              <line x1="110" y1="175" x2="110" y2="155"/>
+              <line x1="195" y1="170" x2="195" y2="150"/>
+              <line x1="140" y1="265" x2="140" y2="245"/>
+              <line x1="175" y1="255" x2="175" y2="235"/>
+            </g>
+            <g>
+              <circle cx="150" cy="65" r="7" fill="#081c36" stroke="#e8c378" stroke-width="2"/>
+              <circle cx="150" cy="65" r="2.4" fill="#e8c378"/>
+              <circle cx="110" cy="150" r="7" fill="#081c36" stroke="#e8c378" stroke-width="2"/>
+              <circle cx="110" cy="150" r="2.4" fill="#e8c378"/>
+              <circle cx="195" cy="145" r="7" fill="#081c36" stroke="#e8c378" stroke-width="2"/>
+              <circle cx="195" cy="145" r="2.4" fill="#e8c378"/>
+              <circle cx="140" cy="240" r="7" fill="#081c36" stroke="#e8c378" stroke-width="2"/>
+              <circle cx="140" cy="240" r="2.4" fill="#e8c378"/>
+              <circle cx="175" cy="230" r="9" fill="#081c36" stroke="#e8c378" stroke-width="2.4"/>
+              <circle cx="175" cy="230" r="3" fill="#e8c378"/>
+            </g>
+          </svg>
+        </div>
         <div class="eyebrow">Who we support</div>
         <h2 class="serif" style="font-size:clamp(36px,4vw,52px);line-height:1.04;letter-spacing:-.035em;font-weight:400;margin:18px 0 32px">Built for complex professional matters.</h2>
         <div class="coverage-list">
           <div class="coverage-item">
-            <div class="coverage-item-icon">⬛</div>
+            <div class="coverage-item-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M4 21V11M20 21V11M7 21V11M11 21V11M13 21V11M17 21V11M2 11l10-6 10 6"/></svg></div>
             <div><h4>Banks & NBFCs</h4><p>Recovery, SARFAESI support, counterparty risk</p></div>
           </div>
           <div class="coverage-item">
-            <div class="coverage-item-icon">⚖</div>
+            <div class="coverage-item-icon"><svg viewBox="0 0 24 24"><path d="M12 3v18M7 21h10M5 7h14M5 7l-3 6a3 3 0 0 0 6 0zM19 7l-3 6a3 3 0 0 0 6 0z"/></svg></div>
             <div><h4>Law firms & counsel</h4><p>Pre-litigation, evidence gathering, IBC</p></div>
           </div>
           <div class="coverage-item">
-            <div class="coverage-item-icon">◆</div>
+            <div class="coverage-item-icon"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 6h6v6"/></svg></div>
             <div><h4>Investors & PE funds</h4><p>Pre-investment due diligence</p></div>
           </div>
           <div class="coverage-item">
-            <div class="coverage-item-icon">▣</div>
+            <div class="coverage-item-icon"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="1"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/></svg></div>
             <div><h4>Corporates</h4><p>Vendor, partner & counterparty assessment</p></div>
           </div>
           <div class="coverage-item">
-            <div class="coverage-item-icon">◉</div>
+            <div class="coverage-item-icon"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8 7.5L10.5 16M16 7.5L13.5 16M8.5 6h7"/></svg></div>
             <div><h4>Insolvency professionals</h4><p>Asset identification, linkage mapping</p></div>
           </div>
           <div class="coverage-item">
-            <div class="coverage-item-icon">◐</div>
+            <div class="coverage-item-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></div>
             <div><h4>Recovery teams</h4><p>Pre-action asset mapping, jurisdiction planning</p></div>
           </div>
         </div>
@@ -617,15 +690,63 @@ a{text-decoration:none;color:inherit}
   </section>
 
   <section class="cta" id="contact">
-    <img class="cta-bg-image" src="https://picsum.photos/seed/veristra-skyline/1920/1080" alt="" loading="lazy">
-    <div class="wrap">
-      <div class="eyebrow">Start a confidential conversation</div>
-      <h2>Need reliable asset intelligence before making a <em>critical decision?</em></h2>
-      <p>Tell us about your due diligence, recovery or litigation-support requirement. We'll help define the right digital-first search scope and confirm turnaround in writing.</p>
-      <div class="cta-btns">
-        <a class="btn btn-light" href="mailto:info@veristra.in"><span>Schedule a Consultation →</span></a>
-        <a class="btn btn-ghost" href="mailto:info@veristra.in"><span>Request a Sample Report</span></a>
+    <div class="wrap cta-grid">
+      <div class="cta-copy">
+        <div class="eyebrow">Start a confidential conversation</div>
+        <h2 style="text-align:left;margin-left:0">Need reliable asset intelligence before making a <em>critical decision?</em></h2>
+        <p style="text-align:left;margin-left:0">Tell us about your due diligence, recovery or litigation-support requirement. We'll help define the right digital-first search scope and confirm turnaround in writing.</p>
+        <div class="cta-direct">
+          <span>Prefer to write directly?</span>
+          <a class="cta-direct-link" href="mailto:info@veristra.in">info@veristra.in →</a>
+        </div>
       </div>
+
+      <form class="contact-form" id="veristra-contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-head">
+          <span class="eyebrow" style="color:var(--gold-light)">Request a consultation</span>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-name">Full name</label>
+            <input id="cf-name" name="name" type="text" required placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label for="cf-org">Organisation</label>
+            <input id="cf-org" name="organisation" type="text" placeholder="Firm / institution">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" name="email" type="email" required placeholder="you@company.com">
+          </div>
+          <div class="form-group">
+            <label for="cf-phone">Phone</label>
+            <input id="cf-phone" name="phone" type="tel" placeholder="+91">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-service">Engagement type</label>
+            <select id="cf-service" name="engagement_type">
+              <option value="Individual Asset Tracing">Individual Asset Tracing</option>
+              <option value="Company Asset Tracing">Company Asset Tracing</option>
+              <option value="Not sure yet">Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cf-date">Preferred consultation date</label>
+            <input id="cf-date" name="preferred_date" type="date">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="cf-message">Brief requirement</label>
+          <textarea id="cf-message" name="message" rows="3" placeholder="A line or two on what you're trying to establish"></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="New consultation request — Veristra website">
+        <button type="submit" class="btn btn-light" style="width:100%;justify-content:center"><span>Request Consultation →</span></button>
+        <p class="form-note">Submitting this form sends your details straight to our inbox. You can also email us directly at <a href="mailto:info@veristra.in">info@veristra.in</a>.</p>
+      </form>
     </div>
   </section>
 
@@ -642,7 +763,7 @@ a{text-decoration:none;color:inherit}
         <h4>Explore</h4>
         <a href="#about">Approach</a>
         <a href="#services">Services</a>
-        <a href="#methodology">Methodology</a>
+        <a href="#methodology">How We Work</a>
         <a href="#findings">Findings</a>
       </div>
       <div>
@@ -656,7 +777,6 @@ a{text-decoration:none;color:inherit}
         <h4>Contact</h4>
         <a href="mailto:info@veristra.in">info@veristra.in</a>
         <a href="#">LinkedIn</a>
-        <a href="#">Insights</a>
       </div>
     </div>
     <div class="legal">
@@ -682,118 +802,151 @@ function isMobile() { return window.innerWidth < 900; }
 
 function applyScenePosition() {
   if (!scene) return;
-  if (isMobile()) {
-    // Center the network and push it down toward the hero-art area
-    scene.position.x = 0;
-    scene.position.y = -1.6;
-  } else {
-    // Desktop: shift right toward the hero-art column
-    scene.position.x = 1.2;
-    scene.position.y = 0;
-  }
+  // Canvas is now confined to the hero-art panel itself, so the scene
+  // just needs to sit centred within that smaller viewport.
+  scene.position.x = 0;
+  scene.position.y = -0.3;
 }
 
 function init() {
+  if (!canvas) return;
+  let hasWebGL = false;
+  try {
+    const test = document.createElement('canvas');
+    hasWebGL = !!(window.WebGLRenderingContext && (test.getContext('webgl') || test.getContext('experimental-webgl')));
+  } catch (e) { hasWebGL = false; }
+  if (!hasWebGL) { canvas.style.display = 'none'; return; }
+
   scene = new THREE.Scene();
   const w = canvas.clientWidth || window.innerWidth;
   const h = canvas.clientHeight || window.innerHeight;
 
   camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
   // Closer camera on mobile so the network fills more of the view
-  camera.position.z = isMobile() ? 7.5 : 9;
+  camera.position.z = isMobile() ? 6 : 6.5;
 
   renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(w, h);
 
-  // Central "subject" node
-  central = new THREE.Mesh(
-    new THREE.SphereGeometry(0.22, 32, 32),
-    new THREE.MeshBasicMaterial({ color: 0xe8c378 })
-  );
-  scene.add(central);
+  // Reusable pin geometry — matches the Veristra logo mark (rounded teardrop pin)
+  const pinPts = [
+    new THREE.Vector2(0.00, 0.00),
+    new THREE.Vector2(0.10, 0.16),
+    new THREE.Vector2(0.24, 0.38),
+    new THREE.Vector2(0.30, 0.58),
+    new THREE.Vector2(0.27, 0.76),
+    new THREE.Vector2(0.15, 0.88),
+    new THREE.Vector2(0.00, 0.92)
+  ];
+  const pinGeo = new THREE.LatheGeometry(pinPts, 28);
+  const ringGeo = new THREE.TorusGeometry(0.12, 0.022, 8, 24);
 
+  function createPin(scale, accent) {
+    const group = new THREE.Group();
+
+    const body = new THREE.Mesh(pinGeo, new THREE.MeshBasicMaterial({ color: 0x0e213c }));
+    body.scale.setScalar(scale);
+    group.add(body);
+
+    const ring = new THREE.Mesh(ringGeo, new THREE.MeshBasicMaterial({ color: 0xf6f4ef }));
+    ring.scale.setScalar(scale);
+    ring.position.y = 0.66 * scale;
+    ring.rotation.x = Math.PI / 2;
+    group.add(ring);
+
+    const dot = new THREE.Mesh(
+      new THREE.SphereGeometry(0.078 * scale, 14, 14),
+      new THREE.MeshBasicMaterial({ color: accent ? 0xe8c378 : 0xc19a4a })
+    );
+    dot.position.y = 0.66 * scale;
+    group.add(dot);
+
+    const shadow = new THREE.Mesh(
+      new THREE.CircleGeometry(0.24 * scale, 24),
+      new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.22 })
+    );
+    shadow.rotation.x = -Math.PI / 2;
+    shadow.position.y = 0.01;
+    group.add(shadow);
+
+    group.userData.baseY = 0;
+    group.userData.phase = Math.random() * Math.PI * 2;
+    return group;
+  }
+
+  // Soft ambient glow beneath the map
   glow1 = new THREE.Mesh(
-    new THREE.SphereGeometry(0.4, 32, 32),
-    new THREE.MeshBasicMaterial({ color: 0xd9ae65, transparent: true, opacity: 0.22 })
+    new THREE.SphereGeometry(0.5, 32, 32),
+    new THREE.MeshBasicMaterial({ color: 0xd9ae65, transparent: true, opacity: 0.16 })
   );
+  glow1.scale.set(3.2, 0.4, 3.2);
+  glow1.position.y = -0.3;
   scene.add(glow1);
 
   glow2 = new THREE.Mesh(
-    new THREE.SphereGeometry(0.75, 32, 32),
-    new THREE.MeshBasicMaterial({ color: 0xd9ae65, transparent: true, opacity: 0.07 })
+    new THREE.SphereGeometry(0.9, 32, 32),
+    new THREE.MeshBasicMaterial({ color: 0xd9ae65, transparent: true, opacity: 0.06 })
   );
+  glow2.scale.set(4.4, 0.5, 4.4);
+  glow2.position.y = -0.3;
   scene.add(glow2);
 
-  // Orbital node rings
+  // Map group — tilted like a ground plane viewed from above, radar-style grid
   nodeGroup = new THREE.Group();
+  nodeGroup.rotation.x = -0.85;
+  nodeGroup.rotation.z = -0.06;
   scene.add(nodeGroup);
 
-  const categories = [
-    { color: 0xe8c378, count: 10, radius: 2.4, ySpeed: 0.0012, tilt: 0.0 },
-    { color: 0xd9ae65, count: 8,  radius: 3.0, ySpeed: -0.0009, tilt: 0.3 },
-    { color: 0xc19a4a, count: 6,  radius: 3.6, ySpeed: 0.0007, tilt: -0.25 }
+  const mapGrid = new THREE.PolarGridHelper(4.3, 10, 6, 64, 0xd9ae65, 0xd9ae65);
+  mapGrid.material.transparent = true;
+  mapGrid.material.opacity = 0.16;
+  nodeGroup.add(mapGrid);
+
+  // HQ marker at map centre
+  central = new THREE.Mesh(new THREE.SphereGeometry(0.05, 16, 16), new THREE.MeshBasicMaterial({ color: 0xe8c378 }));
+  central.position.y = 0.02;
+  nodeGroup.add(central);
+
+  // Three labelled category pins — Property, Corporate, Intellectual Property
+  const pins = [];
+  const featured = [
+    { r: 2.0, a: 2.35 },
+    { r: 2.5, a: 0.35 },
+    { r: 1.8, a: 4.35 }
   ];
-
-  const lineMat = new THREE.LineBasicMaterial({ color: 0xd9ae65, transparent: true, opacity: 0.18 });
-
-  categories.forEach((cat, ci) => {
-    const ringGroup = new THREE.Group();
-    for (let i = 0; i < cat.count; i++) {
-      const phi = Math.acos(-1 + (2 * (i + 0.5)) / cat.count);
-      const theta = Math.sqrt(cat.count * Math.PI) * phi + ci * 0.7;
-      const x = cat.radius * Math.cos(theta) * Math.sin(phi);
-      const y = cat.radius * Math.sin(theta) * Math.sin(phi);
-      const z = cat.radius * Math.cos(phi);
-
-      const node = new THREE.Mesh(
-        new THREE.SphereGeometry(0.06, 16, 16),
-        new THREE.MeshBasicMaterial({ color: cat.color })
-      );
-      node.position.set(x, y, z);
-      ringGroup.add(node);
-
-      const halo = new THREE.Mesh(
-        new THREE.SphereGeometry(0.13, 16, 16),
-        new THREE.MeshBasicMaterial({ color: cat.color, transparent: true, opacity: 0.18 })
-      );
-      halo.position.copy(node.position);
-      ringGroup.add(halo);
-
-      const lineGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0), new THREE.Vector3(x,y,z)]);
-      ringGroup.add(new THREE.Line(lineGeo, lineMat));
-    }
-    ringGroup.userData.ySpeed = cat.ySpeed;
-    ringGroup.rotation.x = cat.tilt;
-    ringGroup.rotation.z = cat.tilt * 0.5;
-    nodeGroup.add(ringGroup);
+  featured.forEach(f => {
+    const pin = createPin(1.05, true);
+    pin.position.set(Math.cos(f.a) * f.r, 0, Math.sin(f.a) * f.r);
+    nodeGroup.add(pin);
+    pins.push(pin);
   });
 
-  // Inter-node cross connections
-  const interMat = new THREE.LineBasicMaterial({ color: 0xd9ae65, transparent: true, opacity: 0.1 });
-  for (let i = 0; i < 12; i++) {
-    const r1 = 2.4 + Math.random() * 1.2;
-    const r2 = 2.4 + Math.random() * 1.2;
-    const p1 = new THREE.Vector3((Math.random()-0.5)*r1*1.6, (Math.random()-0.5)*r1*1.6, (Math.random()-0.5)*r1*1.6);
-    const p2 = new THREE.Vector3((Math.random()-0.5)*r2*1.6, (Math.random()-0.5)*r2*1.6, (Math.random()-0.5)*r2*1.6);
-    const lg = new THREE.BufferGeometry().setFromPoints([p1, p2]);
-    nodeGroup.add(new THREE.Line(lg, interMat));
+  // Scattered minor pins representing the wider record network
+  for (let i = 0; i < 13; i++) {
+    const r = 0.9 + Math.random() * 3.4;
+    const a = Math.random() * Math.PI * 2;
+    const pin = createPin(0.42 + Math.random() * 0.18, false);
+    pin.position.set(Math.cos(a) * r, 0, Math.sin(a) * r);
+    nodeGroup.add(pin);
+    pins.push(pin);
   }
+  nodeGroup.userData.pins = pins;
 
-  // Particle field
-  const pCount = 280;
+  // Particle field (ambient depth behind the map)
+  const pCount = 220;
   const pg = new THREE.BufferGeometry();
   const pos = new Float32Array(pCount * 3);
   for (let i = 0; i < pCount; i++) {
-    const r = 7 + Math.random() * 9;
+    const r = 6 + Math.random() * 9;
     const t = Math.random() * Math.PI * 2;
     const p = Math.acos(2 * Math.random() - 1);
     pos[i*3]   = r * Math.sin(p) * Math.cos(t);
-    pos[i*3+1] = r * Math.sin(p) * Math.sin(t);
+    pos[i*3+1] = r * Math.sin(p) * Math.sin(t) * 0.6 - 1;
     pos[i*3+2] = r * Math.cos(p);
   }
   pg.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-  particles = new THREE.Points(pg, new THREE.PointsMaterial({ color: 0xd9ae65, size: 0.025, transparent: true, opacity: 0.45 }));
+  particles = new THREE.Points(pg, new THREE.PointsMaterial({ color: 0xd9ae65, size: 0.022, transparent: true, opacity: 0.4 }));
   scene.add(particles);
 
   applyScenePosition();
@@ -805,18 +958,23 @@ function animate() {
   const t = Date.now() * 0.001;
 
   if (!reducedMotion) {
-    nodeGroup.children.forEach(ring => { ring.rotation.y += ring.userData.ySpeed || 0.001; });
-    nodeGroup.rotation.y += 0.0014;
+    nodeGroup.rotation.y += 0.0016;
 
-    glow1.scale.setScalar(1 + Math.sin(t * 1.5) * 0.18);
-    glow2.scale.setScalar(1 + Math.sin(t * 1.0 + 1) * 0.12);
+    (nodeGroup.userData.pins || []).forEach(pin => {
+      pin.position.y = pin.userData.baseY + Math.sin(t * 1.3 + pin.userData.phase) * 0.045;
+    });
+
+    glow1.scale.x = 3.2 + Math.sin(t * 1.5) * 0.3;
+    glow1.scale.z = 3.2 + Math.sin(t * 1.5) * 0.3;
+    glow2.scale.x = 4.4 + Math.sin(t * 1.0 + 1) * 0.3;
+    glow2.scale.z = 4.4 + Math.sin(t * 1.0 + 1) * 0.3;
 
     particles.rotation.y += 0.0003;
 
     targetX += (mouseX - targetX) * 0.04;
     targetY += (mouseY - targetY) * 0.04;
     scene.rotation.y = targetX * 0.35;
-    scene.rotation.x = targetY * 0.25;
+    scene.rotation.x = targetY * 0.15;
   }
 
   renderer.render(scene, camera);
@@ -841,16 +999,28 @@ window.addEventListener('resize', () => {
   if (!camera || !renderer) return;
   const w = canvas.clientWidth, h = canvas.clientHeight;
   camera.aspect = w / h;
-  camera.position.z = isMobile() ? 7.5 : 9;
+  camera.position.z = isMobile() ? 6 : 6.5;
   camera.updateProjectionMatrix();
   renderer.setSize(w, h);
   applyScenePosition();
 });
 
-init();
+try { init(); } catch (e) { if (canvas) canvas.style.display = 'none'; }
+
+// Re-sync canvas size once fonts/images finish loading (layout can shift after first paint)
+window.addEventListener('load', () => {
+  if (!camera || !renderer || !canvas) return;
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  if (w && h) {
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+    applyScenePosition();
+  }
+});
 
 // Scroll reveal
-const reveals = document.querySelectorAll('.section, .service, .principle, .finding, .coverage-item, .step, .source-stack-item, .pillar, .float-card, .about-image, .coverage-image');
+const reveals = document.querySelectorAll('.section, .service, .principle, .finding, .coverage-item, .step, .source-stack-item, .pillar, .float-card, .about-visual, .coverage-visual');
 const io = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
