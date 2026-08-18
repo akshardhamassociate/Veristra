@@ -1,0 +1,877 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Veristra — Asset Intelligence Built for Critical Decisions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#081c36; --navy-deep:#050f1f; --ink:#0e213c;
+  --gold:#c19a4a; --gold-light:#d9ae65; --gold-bright:#e8c378;
+  --paper:#faf8f3; --cream:#f6f4ef; --light:#edf2f4;
+  --line:#d7dde1; --muted:#5c6b7a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;font-feature-settings:'ss01'}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.35;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");mix-blend-mode:overlay}
+a{text-decoration:none;color:inherit}
+.serif{font-family:'Fraunces',Georgia,serif}
+.wrap{width:min(1200px,calc(100% - 48px));margin:auto}
+
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.85);backdrop-filter:blur(20px) saturate(140%);border-bottom:1px solid rgba(215,221,225,.6);position:sticky;top:0;z-index:50}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{width:36px;height:36px;background:linear-gradient(135deg,var(--navy),var(--navy-deep));border-radius:50% 50% 50% 4px;transform:rotate(-45deg);position:relative;box-shadow:0 4px 12px rgba(8,28,54,.2)}
+.brand-mark::after{content:'';width:10px;height:10px;background:var(--gold);border:5px solid white;border-radius:50%;position:absolute;left:8px;top:8px}
+.brand-name{font-family:'Fraunces',serif;font-size:22px;letter-spacing:-.02em;font-weight:600}
+.links{display:flex;align-items:center;gap:32px;font-size:13px;font-weight:500}
+.links a:not(.btn){position:relative;transition:color .2s}
+.links a:not(.btn)::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+.links a:not(.btn):hover{color:var(--gold)}
+.links a:not(.btn):hover::after{width:100%}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;padding:13px 22px;font-size:12px;font-weight:600;letter-spacing:.04em;transition:all .35s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
+.btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--gold),var(--gold-light));transform:translateY(101%);transition:transform .4s cubic-bezier(.4,0,.2,1)}
+.btn span{position:relative;z-index:1}
+.btn:hover::before{transform:translateY(0)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(8,28,54,.25)}
+.btn-light{background:#fff;color:var(--navy)}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.3);color:#fff}
+.btn-ghost::before{background:#fff}
+.btn-ghost:hover{color:var(--navy)}
+
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;display:inline-flex;align-items:center;gap:12px}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--gold)}
+
+/* Hero */
+.hero{background:var(--navy-deep);color:#fff;min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(193,154,74,.15),transparent 50%),radial-gradient(ellipse at 15% 80%,rgba(40,80,140,.2),transparent 55%),var(--navy-deep);z-index:0}
+.hero-bg-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.14;filter:brightness(.4) grayscale(.8) sepia(.4);mix-blend-mode:luminosity;z-index:0;pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse at center,black,transparent 80%);z-index:0;pointer-events:none}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center;padding:110px 0;width:min(1200px,calc(100% - 48px));margin:auto}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(46px,6.4vw,82px);line-height:.96;letter-spacing:-.04em;font-weight:400;margin:24px 0}
+.hero h1 em{font-style:italic;color:var(--gold-light);font-weight:300}
+.hero p{font-size:17px;line-height:1.65;color:#a8b5c4;max-width:480px;margin:0 0 36px}
+.hero-metrics{display:flex;margin-top:40px;border-top:1px solid rgba(255,255,255,.15);border-bottom:1px solid rgba(255,255,255,.15)}
+.metric{padding:18px 22px 18px 0;flex:1}
+.metric:not(:last-child){border-right:1px solid rgba(255,255,255,.12);padding-right:22px}
+.metric+.metric{padding-left:22px}
+.metric b{display:block;font-family:'Fraunces',serif;font-size:22px;color:var(--gold-light);font-weight:500}
+.metric span{display:block;font-size:10px;line-height:1.4;color:#8a99ad;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}
+.hero-art{position:relative;height:520px}
+.float-card{position:absolute;background:rgba(255,255,255,.04);border:1px solid rgba(217,174,101,.25);backdrop-filter:blur(14px);padding:14px 18px;font-size:11px;letter-spacing:.05em;color:#cbd5e0;z-index:3;animation:floatY 6s ease-in-out infinite}
+.float-card b{display:block;font-family:'Fraunces',serif;font-size:17px;color:var(--gold-light);font-weight:500;margin-bottom:3px}
+.float-card.a{left:0;top:18%;animation-delay:0s}
+.float-card.b{right:4%;top:14%;animation-delay:2s}
+.float-card.c{left:8%;bottom:14%;animation-delay:4s}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+/* Trust bar */
+.trust{background:var(--gold);color:var(--navy-deep);padding:16px 0;position:relative;z-index:5}
+.trust .wrap{display:flex;justify-content:space-around;gap:20px;flex-wrap:wrap;font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.trust-item{display:flex;align-items:center;gap:10px}
+.trust-item::before{content:'';width:6px;height:6px;background:var(--navy-deep);border-radius:50%}
+
+/* Sections */
+.section{padding:120px 0;position:relative}
+.section-head{margin-bottom:56px}
+.section-head h2{font-family:'Fraunces',serif;font-size:clamp(38px,4.8vw,62px);line-height:1.02;letter-spacing:-.035em;font-weight:400;margin:18px 0 0}
+
+/* About */
+.about{display:grid;grid-template-columns:.85fr 1.15fr;gap:90px;align-items:start}
+.about-sticky{position:sticky;top:120px}
+.about-image{width:100%;height:300px;object-fit:cover;margin-bottom:32px;filter:grayscale(.4) sepia(.18) contrast(1.05) brightness(.95);display:block}
+.about h2{font-family:'Fraunces',serif;font-size:clamp(40px,5vw,64px);line-height:1.02;letter-spacing:-.035em;font-weight:400;margin:18px 0}
+.about h2 em{font-style:italic;color:var(--gold)}
+.about-body p{font-size:17px;line-height:1.75;color:#4a5a6c;margin:0 0 22px}
+.about-body p strong{color:var(--ink);font-weight:600}
+.about-pillars{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.pillar{background:var(--paper);padding:24px}
+.pillar-num{font-family:'Fraunces',serif;font-size:13px;color:var(--gold);font-weight:600;letter-spacing:.05em}
+.pillar h4{font-family:'Fraunces',serif;font-size:19px;font-weight:500;margin:12px 0 6px;letter-spacing:-.02em}
+.pillar p{font-size:13px;line-height:1.55;color:var(--muted);margin:0}
+.use-cases{margin-top:32px;padding:26px;background:var(--navy);color:#fff}
+.use-cases-eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-light);font-weight:700}
+.use-cases-list{display:flex;flex-wrap:wrap;gap:8px 0;margin-top:14px}
+.use-cases-list span{font-size:13px;color:#c5ced8;padding:4px 0;display:inline-flex;align-items:center}
+.use-cases-list span:not(:last-child)::after{content:'·';margin:0 14px;color:var(--gold)}
+
+/* Services */
+.services-head{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:end;margin-bottom:48px}
+.services-head h2{font-family:'Fraunces',serif;font-size:clamp(40px,5vw,64px);line-height:1.02;letter-spacing:-.035em;font-weight:400;margin:18px 0 0}
+.services-head p{font-size:15px;line-height:1.65;color:var(--muted)}
+.services{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.service{background:#fff;padding:40px;min-height:600px;border:1px solid var(--line);position:relative;transition:all .4s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d;perspective:1000px}
+.service::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.service:hover::before{transform:scaleX(1)}
+.service:hover{border-color:var(--gold);box-shadow:0 30px 60px rgba(8,28,54,.12)}
+.service-no{font-size:11px;letter-spacing:.15em;color:var(--gold);font-weight:700;text-transform:uppercase}
+.service-icon{width:56px;height:56px;display:grid;place-items:center;background:var(--navy);color:var(--gold-light);margin:28px 0 24px;font-size:22px;font-family:'Fraunces',serif;transition:transform .4s}
+.service:hover .service-icon{transform:translateZ(25px);background:var(--gold);color:#fff}
+.service h3{font-family:'Fraunces',serif;font-size:30px;font-weight:500;letter-spacing:-.02em;margin:0 0 18px}
+.service-desc{font-size:14px;line-height:1.65;color:var(--muted);margin:0 0 28px}
+.service ul{list-style:none;padding:0;margin:0 0 32px;border-top:1px solid var(--line)}
+.service li{padding:13px 0;border-bottom:1px solid var(--line);font-size:13px;color:var(--ink);display:flex;align-items:center;gap:12px}
+.service li::before{content:'';width:6px;height:6px;background:var(--gold);flex-shrink:0}
+.service-cta{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.05em;color:var(--navy);text-transform:uppercase;border-bottom:1px solid var(--navy);padding-bottom:4px;transition:gap .3s}
+.service-cta:hover{gap:14px}
+
+/* Methodology */
+.method{background:var(--light);position:relative;overflow:hidden}
+.method::before{content:'';position:absolute;top:-200px;right:-200px;width:500px;height:500px;background:radial-gradient(circle,rgba(193,154,74,.1),transparent 70%);border-radius:50%}
+.method-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:80px;align-items:start}
+.method-copy h2{font-family:'Fraunces',serif;font-size:clamp(38px,4.5vw,58px);line-height:1.02;letter-spacing:-.035em;font-weight:400;margin:18px 0 24px}
+.method-copy p{font-size:15px;line-height:1.7;color:var(--muted)}
+.source-stack{margin-top:32px}
+.source-stack-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px}
+.source-stack-item{background:#fff;padding:14px 16px;margin-bottom:6px;font-size:13px;font-weight:500;color:var(--ink);border-left:3px solid var(--gold);display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 12px rgba(15,34,55,.04);transition:transform .3s}
+.source-stack-item:hover{transform:translateX(8px)}
+.source-stack-item:last-child{background:var(--navy);color:#fff}
+.source-stack-item:last-child::after{content:'OUTPUT';font-size:9px;letter-spacing:.15em;color:var(--gold-light)}
+.timeline{position:relative;padding-left:32px;border-left:1px solid var(--line)}
+.step{position:relative;padding:0 0 40px}
+.step:last-child{padding-bottom:0}
+.step::before{content:'';position:absolute;left:-39px;top:4px;width:14px;height:14px;background:var(--light);border:2px solid var(--gold);border-radius:50%;z-index:2;transition:transform .3s}
+.step:hover::before{transform:scale(1.3)}
+.step::after{content:'';position:absolute;left:-32px;top:11px;width:25px;height:1px;background:var(--line)}
+.step-no{font-size:11px;letter-spacing:.15em;color:var(--gold);font-weight:700;text-transform:uppercase}
+.step h3{font-family:'Fraunces',serif;font-size:22px;font-weight:500;margin:8px 0 8px;letter-spacing:-.02em}
+.step p{font-size:14px;line-height:1.65;color:var(--muted);margin:0;max-width:430px}
+
+/* Findings */
+.findings{background:var(--navy-deep);color:#fff;position:relative;overflow:hidden}
+.findings::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(193,154,74,.08),transparent 70%);border-radius:50%}
+.findings .section-head{text-align:center;max-width:760px;margin:0 auto 56px;position:relative}
+.findings .section-head .eyebrow{justify-content:center}
+.findings .section-head p{color:#8a99ad;font-size:16px;line-height:1.65;margin-top:18px}
+.findings-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);position:relative}
+.finding{background:var(--navy-deep);padding:40px 28px;text-align:center;transition:background .3s}
+.finding:hover{background:rgba(193,154,74,.05)}
+.finding-num{font-family:'Fraunces',serif;font-size:54px;font-weight:400;color:var(--gold-light);letter-spacing:-.04em;line-height:1}
+.finding-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8a99ad;margin-top:14px;line-height:1.5}
+.finding-note{font-size:11px;color:#6a7888;margin-top:14px;font-style:italic;font-family:'Fraunces',serif}
+
+/* Principles */
+.principles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:56px}
+.principle{padding:36px;background:#fff;position:relative;transition:background .3s}
+.principle:hover{background:var(--paper)}
+.principle:hover .principle-icon{transform:scale(1.1) rotate(5deg)}
+.principle-num{font-family:'Fraunces',serif;font-size:12px;color:var(--gold);font-weight:600;letter-spacing:.1em}
+.principle-icon{width:40px;height:40px;margin:14px 0;display:grid;place-items:center;font-size:18px;font-family:'Fraunces',serif;color:var(--navy);transition:transform .4s}
+.principle h3{font-family:'Fraunces',serif;font-size:22px;font-weight:500;letter-spacing:-.02em;margin:0 0 8px}
+.principle p{font-size:13px;color:var(--muted);line-height:1.6;margin:0}
+
+/* Coverage */
+.coverage-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.coverage-card{background:#fff;padding:48px;border-top:6px solid var(--gold);box-shadow:0 20px 50px rgba(8,28,54,.08);position:relative}
+.coverage-card .big{display:block;font-family:'Fraunces',serif;font-size:64px;font-weight:500;letter-spacing:-.04em;line-height:1;margin:8px 0 16px}
+.coverage-card p{font-size:14px;line-height:1.7;color:var(--muted)}
+.coverage-image{width:100%;height:220px;object-fit:cover;margin-bottom:28px;filter:grayscale(.4) sepia(.15) contrast(1.05);display:block}
+.coverage-list{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
+.coverage-item{padding:20px 0;border-top:1px solid var(--line);display:flex;align-items:center;gap:14px}
+.coverage-item:nth-last-child(-n+2){border-bottom:1px solid var(--line)}
+.coverage-item-icon{width:36px;height:36px;display:grid;place-items:center;background:var(--paper);font-family:'Fraunces',serif;font-size:16px;color:var(--gold);border:1px solid var(--line)}
+.coverage-item h4{font-family:'Fraunces',serif;font-size:16px;font-weight:500;margin:0;letter-spacing:-.01em}
+.coverage-item p{font-size:11px;color:var(--muted);margin:3px 0 0}
+
+/* Report */
+.report-section{background:var(--paper)}
+.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.report-copy h2{font-family:'Fraunces',serif;font-size:clamp(38px,4.5vw,56px);line-height:1.02;letter-spacing:-.035em;font-weight:400;margin:18px 0 24px}
+.report-copy p{font-size:16px;line-height:1.75;color:var(--muted);max-width:460px;margin:0 0 32px}
+.report-features{display:grid;gap:14px;margin-bottom:36px}
+.report-feature{display:flex;align-items:start;gap:14px;font-size:14px;color:var(--ink);line-height:1.6}
+.report-feature::before{content:'✓';color:var(--gold);font-weight:700;font-size:15px;margin-top:0}
+.report-stage{perspective:1500px;perspective-origin:50% 50%;display:flex;justify-content:center;align-items:center;min-height:520px;position:relative}
+.report-stack{position:relative;width:320px;height:440px;transform-style:preserve-3d;transform:rotateY(-15deg) rotateX(8deg);transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.report-stage:hover .report-stack{transform:rotateY(-5deg) rotateX(4deg)}
+.report-page{position:absolute;width:100%;height:100%;background:#fff;box-shadow:0 25px 50px rgba(8,28,54,.25);border-top:6px solid var(--gold);padding:28px}
+.report-page:nth-child(1){transform:translateZ(-20px) translateX(-15px) rotateY(8deg);opacity:.65}
+.report-page:nth-child(2){transform:translateZ(-10px) translateX(-8px) rotateY(4deg);opacity:.85}
+.report-page:nth-child(3){transform:translateZ(0)}
+.report-content{display:none}
+.report-page:nth-child(3) .report-content{display:block}
+.report-header{font-size:10px;color:var(--gold);font-weight:700;letter-spacing:.15em;text-transform:uppercase}
+.report-title{font-family:'Fraunces',serif;font-size:26px;font-weight:500;margin:14px 0 22px;letter-spacing:-.02em}
+.report-meta{font-size:9px;color:var(--muted);letter-spacing:.08em;margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.report-row{padding:13px 0;border-top:1px solid var(--line);font-size:12px;font-weight:500;display:flex;justify-content:space-between;align-items:center}
+.report-row:last-of-type{border-bottom:1px solid var(--line)}
+.report-row .arrow{color:var(--gold);font-size:14px}
+.report-foot{margin-top:22px;background:var(--light);padding:12px;font-size:9px;color:var(--muted);text-align:center;letter-spacing:.1em}
+
+/* CTA */
+.cta{background:linear-gradient(135deg,var(--navy),var(--navy-deep));color:#fff;text-align:center;padding:140px 0;position:relative;overflow:hidden}
+.cta-bg-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.14;filter:brightness(.3) grayscale(.8) sepia(.4);z-index:0;pointer-events:none}
+.cta::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(193,154,74,.15),transparent 60%);z-index:1}
+.cta::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at center,black,transparent 70%);z-index:1;pointer-events:none}
+.cta .wrap{position:relative;z-index:2}
+.cta .eyebrow{color:var(--gold-light);justify-content:center}
+.cta h2{font-family:'Fraunces',serif;font-size:clamp(40px,5.5vw,68px);line-height:1.02;letter-spacing:-.035em;font-weight:400;margin:18px auto;max-width:780px}
+.cta h2 em{font-style:italic;color:var(--gold-light);font-weight:300}
+.cta p{font-size:17px;color:#a8b5c4;max-width:540px;margin:0 auto 36px;line-height:1.65}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* Footer — no brand-mark, just wordmark */
+.footer{background:var(--navy-deep);color:#8a99ad;padding:64px 0 24px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.footer-brand-name{font-family:'Fraunces',serif;font-size:26px;letter-spacing:-.02em;font-weight:600;color:#fff;display:inline-block;margin-bottom:14px}
+.footer-brand p{font-size:11px;letter-spacing:.15em;color:var(--gold-light);font-weight:600;margin:0}
+.footer h4{font-size:11px;color:var(--gold-light);letter-spacing:.15em;text-transform:uppercase;margin:0 0 18px;font-weight:700}
+.footer a{display:block;font-size:13px;color:#8a99ad;padding:6px 0;transition:color .2s}
+.footer a:hover{color:#fff}
+.legal{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:11px;color:#5c6b7a}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.4,0,.2,1),transform .8s cubic-bezier(.4,0,.2,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  .links a:not(.btn){display:none}
+  .hero-inner,.about,.method-grid,.coverage-grid,.report-grid,.services-head{grid-template-columns:1fr;gap:48px}
+  .hero-inner{padding:60px 0}
+  .hero-art{height:360px}
+  .float-card{padding:10px 14px;font-size:10px}
+  .float-card b{font-size:14px;margin-bottom:2px}
+  .float-card.a{left:0;top:5%}
+  .float-card.b{right:0;top:5%}
+  .float-card.c{left:0;bottom:5%}
+  .services{grid-template-columns:1fr}
+  .principles-grid,.findings-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .about-pillars{grid-template-columns:1fr}
+  .section{padding:80px 0}
+  .about-sticky{position:static}
+  .coverage-list{grid-template-columns:1fr}
+  .about-image{height:220px}
+}
+@media(max-width:600px){
+  .principles-grid,.findings-grid{grid-template-columns:1fr}
+  .hero-metrics{flex-wrap:wrap}
+  .metric{flex:1 1 45%;padding:14px 10px}
+  .report-stack{transform:rotateY(0) rotateX(0)}
+  .legal{flex-direction:column}
+  .hero-art{height:320px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between">
+    <a class="brand" href="#top"><span class="brand-mark"></span><span class="brand-name">Veristra</span></a>
+    <div class="links">
+      <a href="#about">Approach</a>
+      <a href="#services">Services</a>
+      <a href="#methodology">Methodology</a>
+      <a href="#findings">Findings</a>
+      <a href="#contact" class="btn"><span>Request Consultation</span></a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <img class="hero-bg-image" src="https://picsum.photos/seed/veristra-architecture/1920/1080" alt="" loading="eager">
+    <div class="hero-grid"></div>
+    <canvas id="hero-canvas"></canvas>
+
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="eyebrow" style="color:var(--gold-light)">Veristra Asset Intelligence</div>
+        <h1>Evidence-led asset intelligence, <em>built for critical decisions.</em></h1>
+        <p>Digital-first investigations across government records, public filings and IP registries — delivered as structured, defensible intelligence for counsel, institutions and decision-makers.</p>
+        <a class="btn" href="#contact"><span>Schedule a Confidential Consultation →</span></a>
+
+        <div class="hero-metrics">
+          <div class="metric"><b>10–14</b><span>Working-day turnaround</span></div>
+          <div class="metric"><b>100%</b><span>Desktop research</span></div>
+          <div class="metric"><b>Pan-India</b><span>Record coverage</span></div>
+          <div class="metric"><b>Official</b><span>Source-backed</span></div>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <div class="float-card a"><b>Property</b>7 holdings · 3 states</div>
+        <div class="float-card b"><b>Corporate</b>4 active directorships</div>
+        <div class="float-card c"><b>Intellectual Property</b>12 trademark classes</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust">
+    <div class="wrap">
+      <div class="trust-item">Official record based</div>
+      <div class="trust-item">Digital-first research</div>
+      <div class="trust-item">No field investigation</div>
+      <div class="trust-item">Pan-India coverage</div>
+      <div class="trust-item">Confidential engagement</div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap about">
+      <div class="about-sticky">
+        <img class="about-image" src="https://picsum.photos/seed/veristra-records-archive/600/750" alt="Archival records and documented findings" loading="lazy">
+        <div class="eyebrow">The Veristra approach</div>
+        <h2>Truth lives in <em>the records.</em></h2>
+      </div>
+      <div class="about-body">
+        <p>Veristra draws from <strong>veritas</strong> — truth — and <strong>stratum</strong>, a layer of record. The name reflects our foundational conviction: reliable findings emerge from examining layered official records, not from inference, surveillance or field observation.</p>
+        <p>We systematically identify immovable property, corporate holdings and intellectual property assets across Indian jurisdictions — building a documented foundation for the decisions institutions, counsel and investors cannot afford to get wrong.</p>
+
+        <div class="about-pillars">
+          <div class="pillar">
+            <div class="pillar-num">01</div>
+            <h4>Methodical</h4>
+            <p>A repeatable, identity-first research process applied to every engagement.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">02</div>
+            <h4>Traceable</h4>
+            <p>Every finding is tied to a verifiable record source listed in the appendix.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">03</div>
+            <h4>Defensible</h4>
+            <p>Output structured for professional review, sharing and decision-making.</p>
+          </div>
+        </div>
+
+        <div class="use-cases">
+          <div class="use-cases-eyebrow">Typical engagement contexts</div>
+          <div class="use-cases-list">
+            <span>Pre-litigation due diligence</span>
+            <span>Asset tracing & recovery</span>
+            <span>Insolvency proceedings</span>
+            <span>Investment due diligence</span>
+            <span>Litigation support</span>
+            <span>Counterparty risk</span>
+            <span>Succession & estate mapping</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="services-head">
+        <div>
+          <div class="eyebrow">Our services</div>
+          <h2>Asset tracing, structured for clarity.</h2>
+        </div>
+        <p>Two engagement tracks — individual and corporate — each examining the same layered record sets, calibrated to the questions that matter for your matter.</p>
+      </div>
+
+      <div class="services">
+        <article class="service" id="iat">
+          <div class="service-no">01 / Individual</div>
+          <div class="service-icon">◐</div>
+          <h3>Individual Asset Tracing</h3>
+          <p class="service-desc">Identify immovable properties, corporate interests, intellectual property holdings and connected business relationships linked to a named individual.</p>
+          <ul>
+            <li>Identity profiling & alias mapping</li>
+            <li>Directorship & business associations</li>
+            <li>Property ownership search</li>
+            <li>Historical property transfers</li>
+            <li>Family-linked asset identification</li>
+            <li>Trademark & patent search</li>
+            <li>Indicative asset intelligence summary</li>
+          </ul>
+          <a class="service-cta" href="#contact">Discuss an engagement →</a>
+        </article>
+
+        <article class="service" id="cat">
+          <div class="service-no">02 / Company</div>
+          <div class="service-icon">◆</div>
+          <h3>Company Asset Tracing</h3>
+          <p class="service-desc">Develop a comprehensive view of a company's corporate structure, property holdings, financial profile and intellectual property portfolio.</p>
+          <ul>
+            <li>Corporate profile & registration</li>
+            <li>Directors, partners & signatories</li>
+            <li>Shareholding analysis</li>
+            <li>Property intelligence</li>
+            <li>Historical asset transfers</li>
+            <li>Financial profiling</li>
+            <li>Trademark & patent portfolio</li>
+            <li>Indicative asset summary</li>
+          </ul>
+          <a class="service-cta" href="#contact">Discuss an engagement →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section method" id="methodology">
+    <div class="wrap method-grid">
+      <div class="method-copy">
+        <div class="eyebrow">How we work</div>
+        <h2>From brief to a defensible report.</h2>
+        <p>Our process is repeatable, identity-first and entirely desktop-based. Every step is designed to keep the research clear, the sources traceable and the final output useful for professional decision-making.</p>
+
+        <div class="source-stack">
+          <div class="source-stack-label">Source layers we examine</div>
+          <div class="source-stack-item">Government records</div>
+          <div class="source-stack-item">Land & municipal records</div>
+          <div class="source-stack-item">MCA & corporate filings</div>
+          <div class="source-stack-item">IP India registries</div>
+          <div class="source-stack-item">Public financial records</div>
+          <div class="source-stack-item">Structured Veristra report</div>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="step">
+          <div class="step-no">01 / Define</div>
+          <h3>Understand the assignment</h3>
+          <p>We review the objective, target details and the specific questions the final report must help answer. Scope, jurisdictions and turnaround are confirmed in writing.</p>
+        </div>
+        <div class="step">
+          <div class="step-no">02 / Map</div>
+          <h3>Build the identity map</h3>
+          <p>Relevant names, identifiers, directorships, partnerships and connected entities are organised into an identity map before any search begins — the foundation of accurate findings.</p>
+        </div>
+        <div class="step">
+          <div class="step-no">03 / Search</div>
+          <h3>Examine the record trail</h3>
+          <p>Name and identifier-based checks are conducted across available land, municipal, SRO, regulatory and IP sources — pan-India, jurisdiction by jurisdiction.</p>
+        </div>
+        <div class="step">
+          <div class="step-no">04 / Verify</div>
+          <h3>Assess and connect findings</h3>
+          <p>Registered holdings, historical transfers, long-term leases and relevant corporate or IP links are checked for consistency, deduplicated and consolidated into a single view.</p>
+        </div>
+        <div class="step">
+          <div class="step-no">05 / Report</div>
+          <h3>Deliver structured intelligence</h3>
+          <p>You receive a clear, evidence-led report with a source appendix — within the agreed 10–14 working-day turnaround.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section findings" id="findings">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">What a typical report reveals</div>
+        <h2 style="color:#fff">From scattered records to a single, defensible view.</h2>
+        <p>Indicative findings from a standard individual asset tracing engagement. Actual outputs vary by target, jurisdiction and record availability.</p>
+      </div>
+
+      <div class="findings-grid">
+        <div class="finding">
+          <div class="finding-num">07</div>
+          <div class="finding-label">Immovable properties identified across three states</div>
+          <div class="finding-note">Including historical transfers</div>
+        </div>
+        <div class="finding">
+          <div class="finding-num">04</div>
+          <div class="finding-label">Active directorships across registered companies</div>
+          <div class="finding-note">Per MCA filings</div>
+        </div>
+        <div class="finding">
+          <div class="finding-num">12</div>
+          <div class="finding-label">Trademark registrations across classes</div>
+          <div class="finding-note">Per IP India registry</div>
+        </div>
+        <div class="finding">
+          <div class="finding-num">03</div>
+          <div class="finding-label">Historical property transfers in last five years</div>
+          <div class="finding-note">Where records permit</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Why clients choose Veristra</div>
+        <h2>Confidence, built into every engagement.</h2>
+      </div>
+
+      <div class="principles-grid">
+        <article class="principle">
+          <div class="principle-num">01</div>
+          <div class="principle-icon">⛨</div>
+          <h3>Confidential</h3>
+          <p>Assignments are handled with discretion from brief through reporting. Subject engagement is never initiated.</p>
+        </article>
+        <article class="principle">
+          <div class="principle-num">02</div>
+          <div class="principle-icon">▤</div>
+          <h3>Government-backed sources</h3>
+          <p>Findings are grounded in official and public regulatory records — not inference, hearsay or field observation.</p>
+        </article>
+        <article class="principle">
+          <div class="principle-num">03</div>
+          <div class="principle-icon">◐</div>
+          <h3>Pan-India coverage</h3>
+          <p>Digital record research conducted across applicable jurisdictions throughout India, where online access permits.</p>
+        </article>
+        <article class="principle">
+          <div class="principle-num">04</div>
+          <div class="principle-icon">⚔</div>
+          <h3>Evidence-led</h3>
+          <p>Every relevant finding carries a clear source trail in the report appendix — verifiable, traceable, defensible.</p>
+        </article>
+        <article class="principle">
+          <div class="principle-num">05</div>
+          <div class="principle-icon">▦</div>
+          <h3>Professional reports</h3>
+          <p>Structured intelligence designed for counsel, institutions and decision-makers — formatted for review and sharing.</p>
+        </article>
+        <article class="principle">
+          <div class="principle-num">06</div>
+          <div class="principle-icon">◷</div>
+          <h3>Fixed turnaround</h3>
+          <p>Most assignments delivered within 10–14 working days. Timelines confirmed at scope, with status updates.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap coverage-grid">
+      <div class="coverage-card">
+        <div class="eyebrow">Scope</div>
+        <span class="big">Pan-India</span>
+        <p>Searches are conducted across applicable jurisdictions using online accessible records. The scope is fully desktop-based and excludes physical verification, field visits or subject contact.</p>
+      </div>
+      <div>
+        <img class="coverage-image" src="https://picsum.photos/seed/veristra-city-coverage/800/500" alt="Pan-India urban coverage" loading="lazy">
+        <div class="eyebrow">Who we support</div>
+        <h2 class="serif" style="font-size:clamp(36px,4vw,52px);line-height:1.04;letter-spacing:-.035em;font-weight:400;margin:18px 0 32px">Built for complex professional matters.</h2>
+        <div class="coverage-list">
+          <div class="coverage-item">
+            <div class="coverage-item-icon">⬛</div>
+            <div><h4>Banks & NBFCs</h4><p>Recovery, SARFAESI support, counterparty risk</p></div>
+          </div>
+          <div class="coverage-item">
+            <div class="coverage-item-icon">⚖</div>
+            <div><h4>Law firms & counsel</h4><p>Pre-litigation, evidence gathering, IBC</p></div>
+          </div>
+          <div class="coverage-item">
+            <div class="coverage-item-icon">◆</div>
+            <div><h4>Investors & PE funds</h4><p>Pre-investment due diligence</p></div>
+          </div>
+          <div class="coverage-item">
+            <div class="coverage-item-icon">▣</div>
+            <div><h4>Corporates</h4><p>Vendor, partner & counterparty assessment</p></div>
+          </div>
+          <div class="coverage-item">
+            <div class="coverage-item-icon">◉</div>
+            <div><h4>Insolvency professionals</h4><p>Asset identification, linkage mapping</p></div>
+          </div>
+          <div class="coverage-item">
+            <div class="coverage-item-icon">◐</div>
+            <div><h4>Recovery teams</h4><p>Pre-action asset mapping, jurisdiction planning</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section report-section">
+    <div class="wrap report-grid">
+      <div class="report-copy">
+        <div class="eyebrow">The deliverable</div>
+        <h2>Intelligence that is ready to use.</h2>
+        <p>Every engagement concludes with a structured, professional report — designed to make the underlying research easy to review, share with stakeholders and use as a clear foundation for next steps.</p>
+
+        <div class="report-features">
+          <div class="report-feature">Executive summary with indicative asset values where records permit</div>
+          <div class="report-feature">Findings organised by asset class — property, corporate, IP, financial</div>
+          <div class="report-feature">Source appendix linking each finding to its record origin</div>
+          <div class="report-feature">Confidential PDF delivered within the agreed turnaround</div>
+        </div>
+
+        <a class="btn btn-light" href="#contact"><span>Request a sample report →</span></a>
+      </div>
+
+      <div class="report-stage">
+        <div class="report-stack">
+          <div class="report-page"></div>
+          <div class="report-page"></div>
+          <div class="report-page">
+            <div class="report-content">
+              <div class="report-header">Veristra / Asset Intelligence Report</div>
+              <div class="report-title">Executive Summary</div>
+              <div class="report-meta">CONFIDENTIAL · INDIVIDUAL ASSET TRACE · 10–14 WORKING DAYS</div>
+              <div class="report-row"><span>01 · Property Search</span><span class="arrow">→</span></div>
+              <div class="report-row"><span>02 · Corporate Search</span><span class="arrow">→</span></div>
+              <div class="report-row"><span>03 · Trademark & Patent</span><span class="arrow">→</span></div>
+              <div class="report-row"><span>04 · Financial Profile</span><span class="arrow">→</span></div>
+              <div class="report-row"><span>05 · Source Appendix</span><span class="arrow">→</span></div>
+              <div class="report-foot">DOCUMENTED FINDINGS · SOURCE-LED RESEARCH · CONFIDENTIAL OUTPUT</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="contact">
+    <img class="cta-bg-image" src="https://picsum.photos/seed/veristra-skyline/1920/1080" alt="" loading="lazy">
+    <div class="wrap">
+      <div class="eyebrow">Start a confidential conversation</div>
+      <h2>Need reliable asset intelligence before making a <em>critical decision?</em></h2>
+      <p>Tell us about your due diligence, recovery or litigation-support requirement. We'll help define the right digital-first search scope and confirm turnaround in writing.</p>
+      <div class="cta-btns">
+        <a class="btn btn-light" href="mailto:info@veristra.in"><span>Schedule a Consultation →</span></a>
+        <a class="btn btn-ghost" href="mailto:info@veristra.in"><span>Request a Sample Report</span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="footer-brand-name">Veristra</span>
+        <p>DIGITAL · TRACED · CONFIRMED</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="#about">Approach</a>
+        <a href="#services">Services</a>
+        <a href="#methodology">Methodology</a>
+        <a href="#findings">Findings</a>
+      </div>
+      <div>
+        <h4>Information</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Disclaimer</a>
+        <a href="#contact">Download Brochure</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:info@veristra.in">info@veristra.in</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Insights</a>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Veristra Asset Intelligence. All rights reserved.</span>
+      <span>Veristra is a desktop-based research service. Findings reflect records available at time of search.</span>
+    </div>
+  </div>
+</footer>
+
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+</script>
+<script type="module">
+import * as THREE from 'three';
+
+const canvas = document.getElementById('hero-canvas');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+let scene, camera, renderer, central, glow1, glow2, nodeGroup, particles;
+let mouseX = 0, mouseY = 0, targetX = 0, targetY = 0;
+
+function isMobile() { return window.innerWidth < 900; }
+
+function applyScenePosition() {
+  if (!scene) return;
+  if (isMobile()) {
+    // Center the network and push it down toward the hero-art area
+    scene.position.x = 0;
+    scene.position.y = -1.6;
+  } else {
+    // Desktop: shift right toward the hero-art column
+    scene.position.x = 1.2;
+    scene.position.y = 0;
+  }
+}
+
+function init() {
+  scene = new THREE.Scene();
+  const w = canvas.clientWidth || window.innerWidth;
+  const h = canvas.clientHeight || window.innerHeight;
+
+  camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
+  // Closer camera on mobile so the network fills more of the view
+  camera.position.z = isMobile() ? 7.5 : 9;
+
+  renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(w, h);
+
+  // Central "subject" node
+  central = new THREE.Mesh(
+    new THREE.SphereGeometry(0.22, 32, 32),
+    new THREE.MeshBasicMaterial({ color: 0xe8c378 })
+  );
+  scene.add(central);
+
+  glow1 = new THREE.Mesh(
+    new THREE.SphereGeometry(0.4, 32, 32),
+    new THREE.MeshBasicMaterial({ color: 0xd9ae65, transparent: true, opacity: 0.22 })
+  );
+  scene.add(glow1);
+
+  glow2 = new THREE.Mesh(
+    new THREE.SphereGeometry(0.75, 32, 32),
+    new THREE.MeshBasicMaterial({ color: 0xd9ae65, transparent: true, opacity: 0.07 })
+  );
+  scene.add(glow2);
+
+  // Orbital node rings
+  nodeGroup = new THREE.Group();
+  scene.add(nodeGroup);
+
+  const categories = [
+    { color: 0xe8c378, count: 10, radius: 2.4, ySpeed: 0.0012, tilt: 0.0 },
+    { color: 0xd9ae65, count: 8,  radius: 3.0, ySpeed: -0.0009, tilt: 0.3 },
+    { color: 0xc19a4a, count: 6,  radius: 3.6, ySpeed: 0.0007, tilt: -0.25 }
+  ];
+
+  const lineMat = new THREE.LineBasicMaterial({ color: 0xd9ae65, transparent: true, opacity: 0.18 });
+
+  categories.forEach((cat, ci) => {
+    const ringGroup = new THREE.Group();
+    for (let i = 0; i < cat.count; i++) {
+      const phi = Math.acos(-1 + (2 * (i + 0.5)) / cat.count);
+      const theta = Math.sqrt(cat.count * Math.PI) * phi + ci * 0.7;
+      const x = cat.radius * Math.cos(theta) * Math.sin(phi);
+      const y = cat.radius * Math.sin(theta) * Math.sin(phi);
+      const z = cat.radius * Math.cos(phi);
+
+      const node = new THREE.Mesh(
+        new THREE.SphereGeometry(0.06, 16, 16),
+        new THREE.MeshBasicMaterial({ color: cat.color })
+      );
+      node.position.set(x, y, z);
+      ringGroup.add(node);
+
+      const halo = new THREE.Mesh(
+        new THREE.SphereGeometry(0.13, 16, 16),
+        new THREE.MeshBasicMaterial({ color: cat.color, transparent: true, opacity: 0.18 })
+      );
+      halo.position.copy(node.position);
+      ringGroup.add(halo);
+
+      const lineGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0), new THREE.Vector3(x,y,z)]);
+      ringGroup.add(new THREE.Line(lineGeo, lineMat));
+    }
+    ringGroup.userData.ySpeed = cat.ySpeed;
+    ringGroup.rotation.x = cat.tilt;
+    ringGroup.rotation.z = cat.tilt * 0.5;
+    nodeGroup.add(ringGroup);
+  });
+
+  // Inter-node cross connections
+  const interMat = new THREE.LineBasicMaterial({ color: 0xd9ae65, transparent: true, opacity: 0.1 });
+  for (let i = 0; i < 12; i++) {
+    const r1 = 2.4 + Math.random() * 1.2;
+    const r2 = 2.4 + Math.random() * 1.2;
+    const p1 = new THREE.Vector3((Math.random()-0.5)*r1*1.6, (Math.random()-0.5)*r1*1.6, (Math.random()-0.5)*r1*1.6);
+    const p2 = new THREE.Vector3((Math.random()-0.5)*r2*1.6, (Math.random()-0.5)*r2*1.6, (Math.random()-0.5)*r2*1.6);
+    const lg = new THREE.BufferGeometry().setFromPoints([p1, p2]);
+    nodeGroup.add(new THREE.Line(lg, interMat));
+  }
+
+  // Particle field
+  const pCount = 280;
+  const pg = new THREE.BufferGeometry();
+  const pos = new Float32Array(pCount * 3);
+  for (let i = 0; i < pCount; i++) {
+    const r = 7 + Math.random() * 9;
+    const t = Math.random() * Math.PI * 2;
+    const p = Math.acos(2 * Math.random() - 1);
+    pos[i*3]   = r * Math.sin(p) * Math.cos(t);
+    pos[i*3+1] = r * Math.sin(p) * Math.sin(t);
+    pos[i*3+2] = r * Math.cos(p);
+  }
+  pg.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  particles = new THREE.Points(pg, new THREE.PointsMaterial({ color: 0xd9ae65, size: 0.025, transparent: true, opacity: 0.45 }));
+  scene.add(particles);
+
+  applyScenePosition();
+  animate();
+}
+
+function animate() {
+  requestAnimationFrame(animate);
+  const t = Date.now() * 0.001;
+
+  if (!reducedMotion) {
+    nodeGroup.children.forEach(ring => { ring.rotation.y += ring.userData.ySpeed || 0.001; });
+    nodeGroup.rotation.y += 0.0014;
+
+    glow1.scale.setScalar(1 + Math.sin(t * 1.5) * 0.18);
+    glow2.scale.setScalar(1 + Math.sin(t * 1.0 + 1) * 0.12);
+
+    particles.rotation.y += 0.0003;
+
+    targetX += (mouseX - targetX) * 0.04;
+    targetY += (mouseY - targetY) * 0.04;
+    scene.rotation.y = targetX * 0.35;
+    scene.rotation.x = targetY * 0.25;
+  }
+
+  renderer.render(scene, camera);
+}
+
+// Mouse parallax (desktop)
+window.addEventListener('mousemove', e => {
+  mouseX = (e.clientX / window.innerWidth - 0.5);
+  mouseY = (e.clientY / window.innerHeight - 0.5);
+});
+
+// Touch parallax (mobile) — finger drag moves the 3D network
+window.addEventListener('touchmove', e => {
+  if (e.touches.length > 0) {
+    mouseX = (e.touches[0].clientX / window.innerWidth - 0.5);
+    mouseY = (e.touches[0].clientY / window.innerHeight - 0.5);
+  }
+}, { passive: true });
+
+// Resize: re-check mobile and update scene + camera
+window.addEventListener('resize', () => {
+  if (!camera || !renderer) return;
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  camera.aspect = w / h;
+  camera.position.z = isMobile() ? 7.5 : 9;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h);
+  applyScenePosition();
+});
+
+init();
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.section, .service, .principle, .finding, .coverage-item, .step, .source-stack-item, .pillar, .float-card, .about-image, .coverage-image');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+reveals.forEach(el => { el.classList.add('reveal'); io.observe(el); });
+
+// 3D tilt on service cards
+document.querySelectorAll('.service').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = e.clientX - r.left, y = e.clientY - r.top;
+    const rx = ((y - r.height/2) / (r.height/2)) * -3.5;
+    const ry = ((x - r.width/2)  / (r.width/2))  * 3.5;
+    card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(8px)`;
+  });
+  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+});
+</script>
+</body>
+</html>
