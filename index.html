@@ -171,12 +171,12 @@ a{text-decoration:none;color:inherit}
 .principle p{font-size:13px;color:var(--muted);line-height:1.6;margin:0}
 
 /* Coverage */
-.coverage-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.coverage-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
 .coverage-card{background:#fff;padding:48px;border-top:6px solid var(--gold);box-shadow:0 20px 50px rgba(8,28,54,.08);position:relative}
 .coverage-card .big{display:block;font-family:'Fraunces',serif;font-size:64px;font-weight:500;letter-spacing:-.04em;line-height:1;margin:8px 0 16px}
 .coverage-card p{font-size:14px;line-height:1.7;color:var(--muted)}
-.coverage-visual{width:100%;height:340px;margin-bottom:28px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--navy),var(--navy-deep));position:relative;overflow:hidden}
-.coverage-visual svg{height:88%;width:auto}
+.coverage-visual{width:100%;height:240px;margin-bottom:28px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--navy),var(--navy-deep));position:relative;overflow:hidden}
+.coverage-visual svg{width:86%;height:auto}
 .coverage-list{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
 .coverage-item{padding:20px 0;border-top:1px solid var(--line);display:flex;align-items:center;gap:14px}
 .coverage-item:nth-last-child(-n+2){border-bottom:1px solid var(--line)}
@@ -423,7 +423,7 @@ a{text-decoration:none;color:inherit}
           <ul>
             <li>Identity profiling & alias mapping</li>
             <li>Directorship & business associations</li>
-            <li>Property ownership search (including inherited properties)</li>
+            <li>Property ownership search — including inherited properties</li>
             <li>Historical property transfers (past 10 years)</li>
             <li>Family-linked asset identification</li>
             <li>Trademark & patent search</li>
@@ -591,30 +591,31 @@ a{text-decoration:none;color:inherit}
       </div>
       <div>
         <div class="coverage-visual reveal">
-          <svg viewBox="0 0 300 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stylised map of India with record-source coverage points">
-            <path d="M130 8 C150 5 170 10 178 22 C190 30 205 35 215 42 L235 55 C250 65 258 78 252 92 C270 88 285 95 292 108 C288 122 270 128 255 122 C248 135 252 148 240 155 L215 150 C210 170 205 190 200 215 C198 235 195 255 190 275 C185 290 178 300 170 312 C162 322 155 330 148 338 C142 330 136 320 130 308 C122 292 118 275 114 258 C110 240 108 222 105 205 C100 188 96 170 92 152 C85 138 75 128 65 120 C55 112 48 100 45 85 C42 72 48 62 58 58 C65 50 72 42 78 32 C88 22 100 14 112 10 Z"
-                  fill="#0e213c" stroke="#c19a4a" stroke-width="1.4" opacity="0.9"/>
-            <g fill="none" stroke="#d9ae65" stroke-width=".5" opacity=".3">
-              <path d="M60 60L240 60M55 100L250 100M55 150L235 150M65 200L210 200M85 250L190 250M105 300L165 300"/>
-            </g>
-            <g stroke="#faf8f3" stroke-width="1.6">
-              <line x1="150" y1="90" x2="150" y2="70"/>
-              <line x1="110" y1="175" x2="110" y2="155"/>
-              <line x1="195" y1="170" x2="195" y2="150"/>
-              <line x1="140" y1="265" x2="140" y2="245"/>
-              <line x1="175" y1="255" x2="175" y2="235"/>
-            </g>
-            <g>
-              <circle cx="150" cy="65" r="7" fill="#081c36" stroke="#e8c378" stroke-width="2"/>
-              <circle cx="150" cy="65" r="2.4" fill="#e8c378"/>
-              <circle cx="110" cy="150" r="7" fill="#081c36" stroke="#e8c378" stroke-width="2"/>
-              <circle cx="110" cy="150" r="2.4" fill="#e8c378"/>
-              <circle cx="195" cy="145" r="7" fill="#081c36" stroke="#e8c378" stroke-width="2"/>
-              <circle cx="195" cy="145" r="2.4" fill="#e8c378"/>
-              <circle cx="140" cy="240" r="7" fill="#081c36" stroke="#e8c378" stroke-width="2"/>
-              <circle cx="140" cy="240" r="2.4" fill="#e8c378"/>
-              <circle cx="175" cy="230" r="9" fill="#081c36" stroke="#e8c378" stroke-width="2.4"/>
-              <circle cx="175" cy="230" r="3" fill="#e8c378"/>
+          <svg viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Categories of official records searched — land, corporate, IP, municipal, court and financial sources">
+            <g font-family="Inter,sans-serif" font-size="11" fill="#c9d3de" text-anchor="middle">
+              <rect x="10" y="10" width="128" height="108" rx="3" fill="#13294d" stroke="#c19a4a" stroke-opacity=".35"/>
+              <g transform="translate(60,32)" fill="none" stroke="#e8c378" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="0" y="0" width="24" height="24"/><path d="M0 12h24M12 0v24"/></g>
+              <text x="74" y="98">Land & Revenue</text>
+
+              <rect x="146" y="10" width="128" height="108" rx="3" fill="#13294d" stroke="#c19a4a" stroke-opacity=".35"/>
+              <g transform="translate(196,32)" fill="none" stroke="#e8c378" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="0" width="18" height="24"/><path d="M8 6h1M15 6h1M8 12h1M15 12h1M8 18h1M15 18h1"/></g>
+              <text x="210" y="98">Corporate Registrar</text>
+
+              <rect x="282" y="10" width="128" height="108" rx="3" fill="#13294d" stroke="#c19a4a" stroke-opacity=".35"/>
+              <g transform="translate(332,30)" fill="none" stroke="#e8c378" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="7"/><path d="M8.5 15l-2 8 5.5-3.5 5.5 3.5-2-8"/></g>
+              <text x="346" y="98">IP Registries</text>
+
+              <rect x="10" y="142" width="128" height="108" rx="3" fill="#13294d" stroke="#c19a4a" stroke-opacity=".35"/>
+              <g transform="translate(60,164)" fill="none" stroke="#e8c378" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22V11l10-8 10 8v11"/><path d="M9 22v-8h6v8"/></g>
+              <text x="74" y="230">Municipal Records</text>
+
+              <rect x="146" y="142" width="128" height="108" rx="3" fill="#13294d" stroke="#c19a4a" stroke-opacity=".35"/>
+              <g transform="translate(198,163)" fill="none" stroke="#e8c378" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1v22M4 23h12M2 5h16M2 5l-2.5 5.5a2.7 2.7 0 0 0 5 0zM18 5l-2.5 5.5a2.7 2.7 0 0 0 5 0z"/></g>
+              <text x="210" y="230">Court & Insolvency</text>
+
+              <rect x="282" y="142" width="128" height="108" rx="3" fill="#13294d" stroke="#c19a4a" stroke-opacity=".35"/>
+              <g transform="translate(332,164)" fill="none" stroke="#e8c378" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M0 22V9M20 22V9M4 22V9M8 22V9M10 22V9M14 22V9M0 9l10-6 10 6"/></g>
+              <text x="346" y="230">Financial & Regulatory</text>
             </g>
           </svg>
         </div>
@@ -829,49 +830,39 @@ function init() {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(w, h);
 
-  // Reusable pin geometry — matches the Veristra logo mark (rounded teardrop pin)
-  const pinPts = [
-    new THREE.Vector2(0.00, 0.00),
-    new THREE.Vector2(0.10, 0.16),
-    new THREE.Vector2(0.24, 0.38),
-    new THREE.Vector2(0.30, 0.58),
-    new THREE.Vector2(0.27, 0.76),
-    new THREE.Vector2(0.15, 0.88),
-    new THREE.Vector2(0.00, 0.92)
-  ];
-  const pinGeo = new THREE.LatheGeometry(pinPts, 28);
-  const ringGeo = new THREE.TorusGeometry(0.12, 0.022, 8, 24);
-
+  // Simple, sober marker — a thin stem topped with a ring and a dot
+  // (matches the clean flat-map pin style, not the elaborate logo teardrop)
   function createPin(scale, accent) {
     const group = new THREE.Group();
+    const stemH = 0.42 * scale;
 
-    const body = new THREE.Mesh(pinGeo, new THREE.MeshBasicMaterial({ color: 0x0e213c }));
-    body.scale.setScalar(scale);
-    group.add(body);
+    const stemGeo = new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(0, 0, 0),
+      new THREE.Vector3(0, stemH, 0)
+    ]);
+    const stem = new THREE.Line(stemGeo, new THREE.LineBasicMaterial({ color: 0xd9ae65, transparent: true, opacity: 0.85 }));
+    group.add(stem);
 
-    const ring = new THREE.Mesh(ringGeo, new THREE.MeshBasicMaterial({ color: 0xf6f4ef }));
-    ring.scale.setScalar(scale);
-    ring.position.y = 0.66 * scale;
-    ring.rotation.x = Math.PI / 2;
+    const ring = new THREE.Mesh(
+      new THREE.RingGeometry(0.065 * scale, 0.09 * scale, 28),
+      new THREE.MeshBasicMaterial({ color: 0xf6f4ef, side: THREE.DoubleSide })
+    );
+    ring.position.y = stemH;
     group.add(ring);
 
     const dot = new THREE.Mesh(
-      new THREE.SphereGeometry(0.078 * scale, 14, 14),
+      new THREE.SphereGeometry(0.045 * scale, 14, 14),
       new THREE.MeshBasicMaterial({ color: accent ? 0xe8c378 : 0xc19a4a })
     );
-    dot.position.y = 0.66 * scale;
+    dot.position.y = stemH;
     group.add(dot);
 
-    const shadow = new THREE.Mesh(
-      new THREE.CircleGeometry(0.24 * scale, 24),
-      new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.22 })
+    const base = new THREE.Mesh(
+      new THREE.CircleGeometry(0.028 * scale, 16),
+      new THREE.MeshBasicMaterial({ color: 0xd9ae65, transparent: true, opacity: 0.7, side: THREE.DoubleSide })
     );
-    shadow.rotation.x = -Math.PI / 2;
-    shadow.position.y = 0.01;
-    group.add(shadow);
+    group.add(base);
 
-    group.userData.baseY = 0;
-    group.userData.phase = Math.random() * Math.PI * 2;
     return group;
   }
 
@@ -892,45 +883,74 @@ function init() {
   glow2.position.y = -0.3;
   scene.add(glow2);
 
-  // Map group — tilted like a ground plane viewed from above, radar-style grid
+  // Map group — an extruded 3D India silhouette, tilted like a table-top map
   nodeGroup = new THREE.Group();
-  nodeGroup.rotation.x = -0.85;
-  nodeGroup.rotation.z = -0.06;
+  nodeGroup.rotation.x = -0.95;
+  nodeGroup.rotation.z = -0.04;
   scene.add(nodeGroup);
 
-  const mapGrid = new THREE.PolarGridHelper(4.3, 10, 6, 64, 0xd9ae65, 0xd9ae65);
-  mapGrid.material.transparent = true;
-  mapGrid.material.opacity = 0.16;
-  nodeGroup.add(mapGrid);
+  // Build the India silhouette as a flat 2D outline, then extrude it for depth
+  const SCALE = 0.011;
+  const tx = x => (x - 150) * SCALE;
+  const ty = y => (y - 190) * SCALE;
 
-  // HQ marker at map centre
-  central = new THREE.Mesh(new THREE.SphereGeometry(0.05, 16, 16), new THREE.MeshBasicMaterial({ color: 0xe8c378 }));
-  central.position.y = 0.02;
-  nodeGroup.add(central);
+  const indiaShape = new THREE.Shape();
+  indiaShape.moveTo(tx(130), ty(8));
+  indiaShape.bezierCurveTo(tx(150), ty(5), tx(170), ty(10), tx(178), ty(22));
+  indiaShape.bezierCurveTo(tx(190), ty(30), tx(205), ty(35), tx(215), ty(42));
+  indiaShape.lineTo(tx(235), ty(55));
+  indiaShape.bezierCurveTo(tx(250), ty(65), tx(258), ty(78), tx(252), ty(92));
+  indiaShape.bezierCurveTo(tx(270), ty(88), tx(285), ty(95), tx(292), ty(108));
+  indiaShape.bezierCurveTo(tx(288), ty(122), tx(270), ty(128), tx(255), ty(122));
+  indiaShape.bezierCurveTo(tx(248), ty(135), tx(252), ty(148), tx(240), ty(155));
+  indiaShape.lineTo(tx(215), ty(150));
+  indiaShape.bezierCurveTo(tx(210), ty(170), tx(205), ty(190), tx(200), ty(215));
+  indiaShape.bezierCurveTo(tx(198), ty(235), tx(195), ty(255), tx(190), ty(275));
+  indiaShape.bezierCurveTo(tx(185), ty(290), tx(178), ty(300), tx(170), ty(312));
+  indiaShape.bezierCurveTo(tx(162), ty(322), tx(155), ty(330), tx(148), ty(338));
+  indiaShape.bezierCurveTo(tx(142), ty(330), tx(136), ty(320), tx(130), ty(308));
+  indiaShape.bezierCurveTo(tx(122), ty(292), tx(118), ty(275), tx(114), ty(258));
+  indiaShape.bezierCurveTo(tx(110), ty(240), tx(108), ty(222), tx(105), ty(205));
+  indiaShape.bezierCurveTo(tx(100), ty(188), tx(96), ty(170), tx(92), ty(152));
+  indiaShape.bezierCurveTo(tx(85), ty(138), tx(75), ty(128), tx(65), ty(120));
+  indiaShape.bezierCurveTo(tx(55), ty(112), tx(48), ty(100), tx(45), ty(85));
+  indiaShape.bezierCurveTo(tx(42), ty(72), tx(48), ty(62), tx(58), ty(58));
+  indiaShape.bezierCurveTo(tx(65), ty(50), tx(72), ty(42), tx(78), ty(32));
+  indiaShape.bezierCurveTo(tx(88), ty(22), tx(100), ty(14), tx(112), ty(10));
+  indiaShape.closePath();
+
+  // Flat map cutout — same clean navy fill + thin gold coastline as the original 2D design,
+  // just sitting inside the tilted 3D scene rather than a chunky extruded block
+  const indiaGeo = new THREE.ShapeGeometry(indiaShape);
+  const indiaMesh = new THREE.Mesh(indiaGeo, new THREE.MeshBasicMaterial({ color: 0x13294d, side: THREE.DoubleSide }));
+  nodeGroup.add(indiaMesh);
+
+  // Thin gold coastline, traced from the same curve points as the fill
+  const outlinePts = indiaShape.getPoints(120).map(p => new THREE.Vector3(p.x, p.y, 0.008));
+  const outlineGeo = new THREE.BufferGeometry().setFromPoints(outlinePts);
+  const rim = new THREE.LineLoop(outlineGeo, new THREE.LineBasicMaterial({ color: 0xc19a4a, transparent: true, opacity: 0.8 }));
+  nodeGroup.add(rim);
+
+  const SURFACE_Z = 0.01;
+
+  // Pins stand up from the map surface — rotated so their local "up" points along +Z (the map's normal)
+  const pins = [];
+  function placePin(px, py, scale, accent) {
+    const pin = createPin(scale, accent);
+    pin.rotation.x = Math.PI / 2;
+    pin.position.set(tx(px), ty(py), SURFACE_Z);
+    pin.userData.phase = Math.random() * Math.PI * 2;
+    pin.userData.baseZ = pin.position.z;
+    nodeGroup.add(pin);
+    pins.push(pin);
+    return pin;
+  }
 
   // Three labelled category pins — Property, Corporate, Intellectual Property
-  const pins = [];
-  const featured = [
-    { r: 2.0, a: 2.35 },
-    { r: 2.5, a: 0.35 },
-    { r: 1.8, a: 4.35 }
-  ];
-  featured.forEach(f => {
-    const pin = createPin(1.05, true);
-    pin.position.set(Math.cos(f.a) * f.r, 0, Math.sin(f.a) * f.r);
-    nodeGroup.add(pin);
-    pins.push(pin);
-  });
+  placePin(150, 65, 1.3, true);
+  placePin(195, 145, 1.3, true);
+  placePin(140, 240, 1.3, true);
 
-  // Scattered minor pins representing the wider record network
-  for (let i = 0; i < 13; i++) {
-    const r = 0.9 + Math.random() * 3.4;
-    const a = Math.random() * Math.PI * 2;
-    const pin = createPin(0.42 + Math.random() * 0.18, false);
-    pin.position.set(Math.cos(a) * r, 0, Math.sin(a) * r);
-    nodeGroup.add(pin);
-    pins.push(pin);
-  }
   nodeGroup.userData.pins = pins;
 
   // Particle field (ambient depth behind the map)
@@ -958,10 +978,11 @@ function animate() {
   const t = Date.now() * 0.001;
 
   if (!reducedMotion) {
-    nodeGroup.rotation.y += 0.0016;
+    // Gentle sway instead of a full continuous spin — the map stays facing forward
+    nodeGroup.rotation.y = Math.sin(t * 0.25) * 0.12;
 
     (nodeGroup.userData.pins || []).forEach(pin => {
-      pin.position.y = pin.userData.baseY + Math.sin(t * 1.3 + pin.userData.phase) * 0.045;
+      pin.position.z = pin.userData.baseZ + Math.sin(t * 1.3 + pin.userData.phase) * 0.03;
     });
 
     glow1.scale.x = 3.2 + Math.sin(t * 1.5) * 0.3;
@@ -973,8 +994,8 @@ function animate() {
 
     targetX += (mouseX - targetX) * 0.04;
     targetY += (mouseY - targetY) * 0.04;
-    scene.rotation.y = targetX * 0.35;
-    scene.rotation.x = targetY * 0.15;
+    scene.rotation.y = targetX * 0.12;
+    scene.rotation.x = targetY * 0.06;
   }
 
   renderer.render(scene, camera);
