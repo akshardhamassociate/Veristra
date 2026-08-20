@@ -28,6 +28,15 @@ a{text-decoration:none;color:inherit}
 .brand-mark::after{content:'';width:10px;height:10px;background:var(--gold);border:5px solid white;border-radius:50%;position:absolute;left:8px;top:8px}
 .brand-name{font-family:'Fraunces',serif;font-size:22px;letter-spacing:-.02em;font-weight:600}
 .links{display:flex;align-items:center;gap:32px;font-size:13px;font-weight:500}
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:32px;height:32px;background:none;border:none;cursor:pointer;padding:0}
+.nav-toggle span{display:block;width:100%;height:2px;background:var(--navy);transition:transform .25s,opacity .25s}
+.nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle.open span:nth-child(2){opacity:0}
+.nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;flex-direction:column;position:absolute;top:76px;left:0;right:0;background:#fff;border-top:1px solid var(--line);box-shadow:0 12px 24px rgba(8,28,54,.1);padding:8px 24px 20px;max-height:calc(100vh - 76px);overflow-y:auto}
+.mobile-menu a{padding:14px 0;font-size:15px;font-weight:500;color:var(--ink);border-bottom:1px solid var(--light)}
+.mobile-menu a.btn{border:none;background:var(--navy);color:#fff;text-align:center;margin-top:12px;padding:14px;border-radius:2px}
+.mobile-menu.open{display:flex}
 .links a:not(.btn){position:relative;transition:color .2s}
 .links a:not(.btn)::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
 .links a:not(.btn):hover{color:var(--gold)}
@@ -50,9 +59,11 @@ a{text-decoration:none;color:inherit}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(193,154,74,.15),transparent 50%),radial-gradient(ellipse at 15% 80%,rgba(40,80,140,.2),transparent 55%),var(--navy-deep);z-index:0}
 .hero-bg-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.14;filter:brightness(.4) grayscale(.8) sepia(.4);mix-blend-mode:luminosity;z-index:0;pointer-events:none}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse at center,black,transparent 80%);z-index:0;pointer-events:none}
+.hero-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(100deg,rgba(5,15,31,.92) 0%,rgba(5,15,31,.72) 32%,rgba(5,15,31,.32) 56%,transparent 78%),linear-gradient(rgba(5,15,31,.35),rgba(5,15,31,.35))}
 #hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
 .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center;padding:110px 0;width:min(1200px,calc(100% - 48px));margin:auto}
-.hero h1{font-family:'Fraunces',serif;font-size:clamp(46px,6.4vw,82px);line-height:.96;letter-spacing:-.04em;font-weight:400;margin:24px 0}
+.hero-content{position:relative}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(46px,6.4vw,82px);line-height:.96;letter-spacing:-.04em;font-weight:400;margin:24px 0;text-shadow:0 2px 24px rgba(0,0,0,.35)}
 .hero h1 em{font-style:italic;color:var(--gold-light);font-weight:300}
 .hero p{font-size:17px;line-height:1.65;color:#a8b5c4;max-width:480px;margin:0 0 36px}
 .hero-metrics{display:flex;margin-top:40px;border-top:1px solid rgba(255,255,255,.15);border-bottom:1px solid rgba(255,255,255,.15)}
@@ -62,18 +73,16 @@ a{text-decoration:none;color:inherit}
 .metric b{display:block;font-family:'Fraunces',serif;font-size:22px;color:var(--gold-light);font-weight:500}
 .metric span{display:block;font-size:10px;line-height:1.4;color:#8a99ad;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}
 .hero-art{position:relative;height:520px}
-.float-card{position:absolute;background:rgba(255,255,255,.04);border:1px solid rgba(217,174,101,.25);backdrop-filter:blur(14px);padding:14px 18px;font-size:11px;letter-spacing:.05em;color:#cbd5e0;z-index:3;animation:floatY 6s ease-in-out infinite}
-.float-card b{display:block;font-family:'Fraunces',serif;font-size:17px;color:var(--gold-light);font-weight:500;margin-bottom:3px}
-.float-card.a{left:0;top:18%;animation-delay:0s}
-.float-card.b{right:4%;top:14%;animation-delay:2s}
-.float-card.c{left:8%;bottom:14%;animation-delay:4s}
 @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 
 /* Trust bar */
-.trust{background:var(--gold);color:var(--navy-deep);padding:16px 0;position:relative;z-index:5}
-.trust .wrap{display:flex;justify-content:space-around;gap:20px;flex-wrap:wrap;font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
-.trust-item{display:flex;align-items:center;gap:10px}
-.trust-item::before{content:'';width:6px;height:6px;background:var(--navy-deep);border-radius:50%}
+.trust{background:var(--gold);color:var(--navy-deep);padding:16px 0;position:relative;z-index:5;overflow:hidden}
+.trust-track{display:flex;align-items:center;gap:48px;width:max-content;animation:marquee 26s linear infinite}
+.trust:hover .trust-track{animation-play-state:paused}
+.trust-item{display:flex;align-items:center;gap:10px;font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.trust-item::before{content:'';width:6px;height:6px;background:var(--navy-deep);border-radius:50%;flex-shrink:0}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.trust-track{animation:none;width:100%;justify-content:center;flex-wrap:wrap}.trust-dup{display:none}}
 
 /* Sections */
 .section{padding:84px 0;position:relative}
@@ -122,6 +131,7 @@ a{text-decoration:none;color:inherit}
 .service ul{list-style:none;padding:0;margin:0 0 32px;border-top:1px solid var(--line)}
 .service li{padding:13px 0;border-bottom:1px solid var(--line);font-size:13px;color:var(--ink);display:flex;align-items:center;gap:12px}
 .service li::before{content:'';width:6px;height:6px;background:var(--gold);flex-shrink:0}
+.service-abbr{font-family:'Inter',sans-serif;font-size:16px;font-weight:600;color:var(--gold);letter-spacing:.02em}
 .service-cta{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.05em;color:var(--navy);text-transform:uppercase;border-bottom:1px solid var(--navy);padding-bottom:4px;transition:gap .3s}
 .service-cta:hover{gap:14px}
 
@@ -153,7 +163,7 @@ a{text-decoration:none;color:inherit}
 .findings .section-head{text-align:center;max-width:760px;margin:0 auto 56px;position:relative}
 .findings .section-head .eyebrow{justify-content:center}
 .findings .section-head p{color:#8a99ad;font-size:16px;line-height:1.65;margin-top:18px}
-.findings-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);position:relative}
+.findings-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);position:relative}
 .finding{background:var(--navy-deep);padding:40px 28px;text-align:center;transition:background .3s}
 .finding:hover{background:rgba(193,154,74,.05)}
 .finding-num{font-family:'Fraunces',serif;font-size:54px;font-weight:400;color:var(--gold-light);letter-spacing:-.04em;line-height:1}
@@ -175,8 +185,8 @@ a{text-decoration:none;color:inherit}
 .coverage-card{background:#fff;padding:48px;border-top:6px solid var(--gold);box-shadow:0 20px 50px rgba(8,28,54,.08);position:relative}
 .coverage-card .big{display:block;font-family:'Fraunces',serif;font-size:64px;font-weight:500;letter-spacing:-.04em;line-height:1;margin:8px 0 16px}
 .coverage-card p{font-size:14px;line-height:1.7;color:var(--muted)}
-.coverage-visual{width:100%;height:240px;margin-bottom:28px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--navy),var(--navy-deep));position:relative;overflow:hidden}
-.coverage-visual svg{width:86%;height:auto}
+.coverage-visual{width:100%;height:340px;margin-bottom:28px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--navy),var(--navy-deep));position:relative;overflow:hidden}
+.coverage-visual svg{height:88%;width:auto}
 .coverage-list{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
 .coverage-item{padding:20px 0;border-top:1px solid var(--line);display:flex;align-items:center;gap:14px}
 .coverage-item:nth-last-child(-n+2){border-bottom:1px solid var(--line)}
@@ -254,15 +264,14 @@ a{text-decoration:none;color:inherit}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
 @media(max-width:900px){
-  .links a:not(.btn){display:none}
+  .links{display:none}
+  .nav-toggle{display:flex}
   .hero-inner,.about,.method-grid,.coverage-grid,.report-grid,.services-head{grid-template-columns:1fr;gap:48px}
   .hero-inner{padding:60px 0}
-  .hero-art{height:360px}
-  .float-card{padding:10px 14px;font-size:10px}
-  .float-card b{font-size:14px;margin-bottom:2px}
-  .float-card.a{left:0;top:5%}
-  .float-card.b{right:0;top:5%}
-  .float-card.c{left:0;bottom:5%}
+  .hero-art{height:0}
+  .hero-scrim{background:linear-gradient(180deg,rgba(5,15,31,.55) 0%,rgba(5,15,31,.88) 40%,rgba(5,15,31,.92) 75%,rgba(5,15,31,.6) 100%)}
+  .cta{padding:56px 0}
+  .footer{padding:40px 0 20px}
   .services{grid-template-columns:1fr}
   .principles-grid,.findings-grid{grid-template-columns:repeat(2,1fr)}
   .footer-grid{grid-template-columns:1fr 1fr}
@@ -270,7 +279,8 @@ a{text-decoration:none;color:inherit}
   .section{padding:64px 0}
   .about-sticky{position:static}
   .coverage-list{grid-template-columns:1fr}
-  .about-image{height:220px}
+  .about-visual{height:220px}
+  .coverage-visual{height:260px}
 }
 @media(max-width:600px){
   .principles-grid,.findings-grid{grid-template-columns:1fr}
@@ -278,7 +288,6 @@ a{text-decoration:none;color:inherit}
   .metric{flex:1 1 45%;padding:14px 10px}
   .report-stack{transform:rotateY(0) rotateX(0)}
   .legal{flex-direction:column}
-  .hero-art{height:320px}
 }
 </style>
 </head>
@@ -294,6 +303,16 @@ a{text-decoration:none;color:inherit}
       <a href="#findings">Findings</a>
       <a href="#contact" class="btn"><span>Request Consultation</span></a>
     </div>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about">Approach</a>
+    <a href="#services">Services</a>
+    <a href="#methodology">How We Work</a>
+    <a href="#findings">Findings</a>
+    <a href="#contact" class="btn"><span>Request Consultation</span></a>
   </div>
 </nav>
 
@@ -301,7 +320,9 @@ a{text-decoration:none;color:inherit}
 
   <section class="hero">
     <div class="hero-bg"></div>
+    <canvas id="hero-canvas"></canvas>
     <div class="hero-grid"></div>
+    <div class="hero-scrim"></div>
 
     <div class="hero-inner">
       <div class="hero-content">
@@ -318,22 +339,22 @@ a{text-decoration:none;color:inherit}
         </div>
       </div>
 
-      <div class="hero-art">
-        <canvas id="hero-canvas"></canvas>
-        <div class="float-card a"><b>Property</b>7 holdings · 3 states</div>
-        <div class="float-card b"><b>Corporate</b>4 active directorships</div>
-        <div class="float-card c"><b>Intellectual Property</b>12 trademark classes</div>
-      </div>
+      <div class="hero-art"></div>
     </div>
   </section>
 
   <section class="trust">
-    <div class="wrap">
+    <div class="trust-track">
       <div class="trust-item">Official record based</div>
       <div class="trust-item">Digital-first research</div>
       <div class="trust-item">No field investigation</div>
       <div class="trust-item">Pan-India coverage</div>
       <div class="trust-item">Confidential engagement</div>
+      <div class="trust-item trust-dup" aria-hidden="true">Official record based</div>
+      <div class="trust-item trust-dup" aria-hidden="true">Digital-first research</div>
+      <div class="trust-item trust-dup" aria-hidden="true">No field investigation</div>
+      <div class="trust-item trust-dup" aria-hidden="true">Pan-India coverage</div>
+      <div class="trust-item trust-dup" aria-hidden="true">Confidential engagement</div>
     </div>
   </section>
 
@@ -343,31 +364,68 @@ a{text-decoration:none;color:inherit}
         <div class="eyebrow">The Veristra approach</div>
         <h2>Truth lives in <em>the records.</em></h2>
         <div class="about-visual reveal">
-          <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Layered official records verified and confirmed">
-            <g transform="rotate(-6 200 160)"><rect x="92" y="42" width="216" height="272" rx="4" fill="#0e213c" opacity=".3"/></g>
-            <g transform="rotate(3 200 160)"><rect x="86" y="36" width="216" height="272" rx="4" fill="#13294d" opacity=".5"/></g>
-            <rect x="90" y="30" width="220" height="278" rx="4" fill="#faf8f3"/>
-            <rect x="90" y="30" width="220" height="7" rx="3.5" fill="#c19a4a"/>
-            <rect x="114" y="66" width="128" height="7" rx="3.5" fill="#d7dde1"/>
-            <rect x="114" y="88" width="168" height="7" rx="3.5" fill="#d7dde1"/>
-            <rect x="114" y="110" width="146" height="7" rx="3.5" fill="#d7dde1"/>
-            <rect x="114" y="140" width="168" height="4" rx="2" fill="#edf2f4"/>
-            <rect x="114" y="152" width="168" height="4" rx="2" fill="#edf2f4"/>
-            <rect x="114" y="164" width="118" height="4" rx="2" fill="#edf2f4"/>
-            <rect x="114" y="190" width="168" height="4" rx="2" fill="#edf2f4"/>
-            <rect x="114" y="202" width="168" height="4" rx="2" fill="#edf2f4"/>
-            <rect x="114" y="214" width="88" height="4" rx="2" fill="#edf2f4"/>
-            <rect x="114" y="240" width="168" height="4" rx="2" fill="#edf2f4"/>
-            <rect x="114" y="252" width="140" height="4" rx="2" fill="#edf2f4"/>
-            <circle cx="292" cy="272" r="36" fill="#081c36"/>
-            <circle cx="292" cy="272" r="36" fill="none" stroke="#c19a4a" stroke-width="2"/>
-            <path d="M276 272l11 11l23 -25" fill="none" stroke="#e8c378" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="An official record examined and verified">
+            <defs>
+              <radialGradient id="aboutGlow" cx="50%" cy="35%" r="70%">
+                <stop offset="0%" stop-color="#1a3a63" stop-opacity=".9"/>
+                <stop offset="100%" stop-color="#081c36" stop-opacity="0"/>
+              </radialGradient>
+              <clipPath id="lensClip"><circle cx="272" cy="214" r="30"/></clipPath>
+            </defs>
+
+            <rect x="0" y="0" width="400" height="320" fill="url(#aboutGlow)"/>
+            <g stroke="#d9ae65" stroke-width=".5" opacity=".18">
+              <circle cx="272" cy="214" r="52" fill="none"/>
+              <circle cx="272" cy="214" r="72" fill="none"/>
+            </g>
+
+            <!-- Layered record stack -->
+            <g transform="rotate(-6 190 158)"><rect x="82" y="40" width="216" height="272" rx="4" fill="#0e213c" opacity=".3"/></g>
+            <g transform="rotate(3 190 158)"><rect x="76" y="34" width="216" height="272" rx="4" fill="#13294d" opacity=".5"/></g>
+            <rect x="80" y="28" width="220" height="278" rx="4" fill="#faf8f3"/>
+            <rect x="80" y="28" width="220" height="7" rx="3.5" fill="#c19a4a"/>
+
+            <rect x="104" y="64" width="118" height="7" rx="3.5" fill="#d7dde1"/>
+            <rect x="104" y="86" width="156" height="7" rx="3.5" fill="#d7dde1"/>
+            <rect x="104" y="108" width="134" height="7" rx="3.5" fill="#d7dde1"/>
+
+            <rect x="104" y="138" width="156" height="4" rx="2" fill="#edf2f4"/>
+            <rect x="104" y="150" width="156" height="4" rx="2" fill="#edf2f4"/>
+            <rect x="104" y="162" width="108" height="4" rx="2" fill="#edf2f4"/>
+            <rect x="104" y="188" width="156" height="4" rx="2" fill="#edf2f4"/>
+            <rect x="104" y="200" width="156" height="4" rx="2" fill="#edf2f4"/>
+            <rect x="104" y="212" width="80" height="4" rx="2" fill="#edf2f4"/>
+            <rect x="104" y="238" width="156" height="4" rx="2" fill="#edf2f4"/>
+            <rect x="104" y="250" width="130" height="4" rx="2" fill="#edf2f4"/>
+
+            <!-- corner fold -->
+            <path d="M280 28 v34 h20 z" fill="#e7e2d6"/>
+
+            <!-- small record-network nodes, echoing the pin markers used elsewhere -->
+            <g stroke="#d9ae65" stroke-width="1" opacity=".55">
+              <line x1="300" y1="90" x2="336" y2="66"/>
+              <line x1="300" y1="90" x2="344" y2="104"/>
+            </g>
+            <circle cx="336" cy="66" r="4" fill="#0e213c" stroke="#c19a4a" stroke-width="1.5"/>
+            <circle cx="344" cy="104" r="3" fill="#c19a4a"/>
+
+            <!-- magnifying glass verifying a finding -->
+            <g clip-path="url(#lensClip)">
+              <rect x="238" y="182" width="68" height="64" fill="#0c2544"/>
+              <rect x="242" y="196" width="52" height="4" rx="2" fill="#3a557a"/>
+              <rect x="242" y="206" width="40" height="4" rx="2" fill="#3a557a"/>
+              <path d="M256 226l10 10l22 -24" fill="none" stroke="#e8c378" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <circle cx="272" cy="214" r="30" fill="none" stroke="#c19a4a" stroke-width="3"/>
+            <circle cx="272" cy="214" r="30" fill="none" stroke="#faf8f3" stroke-width="1" opacity=".4"/>
+            <line x1="294" y1="236" x2="316" y2="258" stroke="#c19a4a" stroke-width="7" stroke-linecap="round"/>
+            <line x1="294" y1="236" x2="316" y2="258" stroke="#081c36" stroke-width="3" stroke-linecap="round"/>
           </svg>
         </div>
       </div>
       <div class="about-body">
         <p>Veristra draws from <strong>veritas</strong> — truth — and <strong>stratum</strong>, a layer of record. The name reflects our foundational conviction: reliable findings emerge from examining layered official records, not from inference, surveillance or field observation.</p>
-        <p>We systematically identify immovable property, corporate holdings and intellectual property assets across Indian jurisdictions — building a documented foundation for the decisions institutions, counsel and investors cannot afford to get wrong.</p>
+        <p>We systematically identify immovable &amp; movable assets, corporate holdings and intellectual property assets across Indian jurisdictions — building a documented foundation for the decisions institutions, counsel and investors cannot afford to get wrong.</p>
         <p>Every finding is categorised strictly as <strong>confirmed</strong> or <strong>indicative</strong>, in line with the evidentiary standard of the underlying source — so you always know exactly how much weight a finding can bear.</p>
 
         <div class="about-pillars">
@@ -418,16 +476,17 @@ a{text-decoration:none;color:inherit}
         <article class="service" id="iat">
           <div class="service-no">01 / Individual</div>
           <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></div>
-          <h3>Individual Asset Tracing</h3>
-          <p class="service-desc">Identify immovable properties, corporate interests, intellectual property holdings and connected business relationships linked to a named individual.</p>
+          <h3>Individual Asset Tracing <span class="service-abbr">(IAT)</span></h3>
+          <p class="service-desc">Identify immovable &amp; movable assets, corporate interests, intellectual property holdings and connected business relationships linked to a named individual.</p>
           <ul>
             <li>Identity profiling & alias mapping</li>
             <li>Directorship & business associations</li>
-            <li>Property ownership search — including inherited properties</li>
+            <li>Property intelligence</li>
+            <li>Movable assets</li>
             <li>Historical property transfers (past 10 years)</li>
             <li>Family-linked asset identification</li>
             <li>Trademark & patent search</li>
-            <li>Indicative asset intelligence summary</li>
+            <li>Indicative asset summary</li>
           </ul>
           <a class="service-cta" href="#contact">Discuss an engagement →</a>
         </article>
@@ -435,13 +494,14 @@ a{text-decoration:none;color:inherit}
         <article class="service" id="cat">
           <div class="service-no">02 / Company</div>
           <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2M10 21v-4h4v4"/></svg></div>
-          <h3>Company Asset Tracing</h3>
-          <p class="service-desc">Develop a comprehensive view of a company's corporate structure, property holdings, financial profile and intellectual property portfolio.</p>
+          <h3>Company Asset Tracing <span class="service-abbr">(CAT)</span></h3>
+          <p class="service-desc">Develop a comprehensive view of a company's corporate structure, asset holdings, financial profile and intellectual property portfolio.</p>
           <ul>
             <li>Corporate profile & registration</li>
             <li>Directors, partners & signatories</li>
             <li>Shareholding analysis</li>
             <li>Property intelligence</li>
+            <li>Movable assets</li>
             <li>Historical asset transfers (past 10 years)</li>
             <li>Financial profiling</li>
             <li>Trademark & patent portfolio</li>
@@ -512,8 +572,13 @@ a{text-decoration:none;color:inherit}
       <div class="findings-grid">
         <div class="finding">
           <div class="finding-num">07</div>
-          <div class="finding-label">Immovable properties identified across three states</div>
+          <div class="finding-label">Immovable assets identified across three states</div>
           <div class="finding-note">Including historical transfers</div>
+        </div>
+        <div class="finding">
+          <div class="finding-num">02</div>
+          <div class="finding-label">Movable assets identified and profiled</div>
+          <div class="finding-note">Vehicles, shares & other holdings</div>
         </div>
         <div class="finding">
           <div class="finding-num">04</div>
@@ -591,31 +656,30 @@ a{text-decoration:none;color:inherit}
       </div>
       <div>
         <div class="coverage-visual reveal">
-          <svg viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Categories of official records searched — land, corporate, IP, municipal, court and financial sources">
-            <g font-family="Inter,sans-serif" font-size="11" fill="#c9d3de" text-anchor="middle">
-              <rect x="10" y="10" width="128" height="108" rx="3" fill="#13294d" stroke="#c19a4a" stroke-opacity=".35"/>
-              <g transform="translate(60,32)" fill="none" stroke="#e8c378" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="0" y="0" width="24" height="24"/><path d="M0 12h24M12 0v24"/></g>
-              <text x="74" y="98">Land & Revenue</text>
-
-              <rect x="146" y="10" width="128" height="108" rx="3" fill="#13294d" stroke="#c19a4a" stroke-opacity=".35"/>
-              <g transform="translate(196,32)" fill="none" stroke="#e8c378" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="0" width="18" height="24"/><path d="M8 6h1M15 6h1M8 12h1M15 12h1M8 18h1M15 18h1"/></g>
-              <text x="210" y="98">Corporate Registrar</text>
-
-              <rect x="282" y="10" width="128" height="108" rx="3" fill="#13294d" stroke="#c19a4a" stroke-opacity=".35"/>
-              <g transform="translate(332,30)" fill="none" stroke="#e8c378" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="7"/><path d="M8.5 15l-2 8 5.5-3.5 5.5 3.5-2-8"/></g>
-              <text x="346" y="98">IP Registries</text>
-
-              <rect x="10" y="142" width="128" height="108" rx="3" fill="#13294d" stroke="#c19a4a" stroke-opacity=".35"/>
-              <g transform="translate(60,164)" fill="none" stroke="#e8c378" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22V11l10-8 10 8v11"/><path d="M9 22v-8h6v8"/></g>
-              <text x="74" y="230">Municipal Records</text>
-
-              <rect x="146" y="142" width="128" height="108" rx="3" fill="#13294d" stroke="#c19a4a" stroke-opacity=".35"/>
-              <g transform="translate(198,163)" fill="none" stroke="#e8c378" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1v22M4 23h12M2 5h16M2 5l-2.5 5.5a2.7 2.7 0 0 0 5 0zM18 5l-2.5 5.5a2.7 2.7 0 0 0 5 0z"/></g>
-              <text x="210" y="230">Court & Insolvency</text>
-
-              <rect x="282" y="142" width="128" height="108" rx="3" fill="#13294d" stroke="#c19a4a" stroke-opacity=".35"/>
-              <g transform="translate(332,164)" fill="none" stroke="#e8c378" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M0 22V9M20 22V9M4 22V9M8 22V9M10 22V9M14 22V9M0 9l10-6 10 6"/></g>
-              <text x="346" y="230">Financial & Regulatory</text>
+          <svg viewBox="0 0 300 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stylised map of India with record-source coverage points">
+            <path d="M130 8 C150 5 170 10 178 22 C190 30 205 35 215 42 L235 55 C250 65 258 78 252 92 C270 88 285 95 292 108 C288 122 270 128 255 122 C248 135 252 148 240 155 L215 150 C210 170 205 190 200 215 C198 235 195 255 190 275 C185 290 178 300 170 312 C162 322 155 330 148 338 C142 330 136 320 130 308 C122 292 118 275 114 258 C110 240 108 222 105 205 C100 188 96 170 92 152 C85 138 75 128 65 120 C55 112 48 100 45 85 C42 72 48 62 58 58 C65 50 72 42 78 32 C88 22 100 14 112 10 Z"
+                  fill="#0e213c" stroke="#c19a4a" stroke-width="1.4" opacity="0.9"/>
+            <g fill="none" stroke="#d9ae65" stroke-width=".5" opacity=".3">
+              <path d="M60 60L240 60M55 100L250 100M55 150L235 150M65 200L210 200M85 250L190 250M105 300L165 300"/>
+            </g>
+            <g stroke="#faf8f3" stroke-width="1.6">
+              <line x1="150" y1="90" x2="150" y2="70"/>
+              <line x1="110" y1="175" x2="110" y2="155"/>
+              <line x1="195" y1="170" x2="195" y2="150"/>
+              <line x1="140" y1="265" x2="140" y2="245"/>
+              <line x1="175" y1="255" x2="175" y2="235"/>
+            </g>
+            <g>
+              <circle cx="150" cy="65" r="7" fill="#081c36" stroke="#e8c378" stroke-width="2"/>
+              <circle cx="150" cy="65" r="2.4" fill="#e8c378"/>
+              <circle cx="110" cy="150" r="7" fill="#081c36" stroke="#e8c378" stroke-width="2"/>
+              <circle cx="110" cy="150" r="2.4" fill="#e8c378"/>
+              <circle cx="195" cy="145" r="7" fill="#081c36" stroke="#e8c378" stroke-width="2"/>
+              <circle cx="195" cy="145" r="2.4" fill="#e8c378"/>
+              <circle cx="140" cy="240" r="7" fill="#081c36" stroke="#e8c378" stroke-width="2"/>
+              <circle cx="140" cy="240" r="2.4" fill="#e8c378"/>
+              <circle cx="175" cy="230" r="9" fill="#081c36" stroke="#e8c378" stroke-width="2.4"/>
+              <circle cx="175" cy="230" r="3" fill="#e8c378"/>
             </g>
           </svg>
         </div>
@@ -803,10 +867,16 @@ function isMobile() { return window.innerWidth < 900; }
 
 function applyScenePosition() {
   if (!scene) return;
-  // Canvas is now confined to the hero-art panel itself, so the scene
-  // just needs to sit centred within that smaller viewport.
-  scene.position.x = 0;
-  scene.position.y = -0.3;
+  if (isMobile()) {
+    // Center the network and push it down toward the hero-art area
+    scene.position.x = 0;
+    scene.position.y = -1.6;
+  } else {
+    // Desktop: shift right toward the hero-art column, since the canvas
+    // now spans the full hero background
+    scene.position.x = 1.2;
+    scene.position.y = 0;
+  }
 }
 
 function init() {
@@ -824,149 +894,100 @@ function init() {
 
   camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
   // Closer camera on mobile so the network fills more of the view
-  camera.position.z = isMobile() ? 6 : 6.5;
+  camera.position.z = isMobile() ? 7.5 : 9;
 
   renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(w, h);
 
-  // Simple, sober marker — a thin stem topped with a ring and a dot
-  // (matches the clean flat-map pin style, not the elaborate logo teardrop)
-  function createPin(scale, accent) {
-    const group = new THREE.Group();
-    const stemH = 0.42 * scale;
-
-    const stemGeo = new THREE.BufferGeometry().setFromPoints([
-      new THREE.Vector3(0, 0, 0),
-      new THREE.Vector3(0, stemH, 0)
-    ]);
-    const stem = new THREE.Line(stemGeo, new THREE.LineBasicMaterial({ color: 0xd9ae65, transparent: true, opacity: 0.85 }));
-    group.add(stem);
-
-    const ring = new THREE.Mesh(
-      new THREE.RingGeometry(0.065 * scale, 0.09 * scale, 28),
-      new THREE.MeshBasicMaterial({ color: 0xf6f4ef, side: THREE.DoubleSide })
-    );
-    ring.position.y = stemH;
-    group.add(ring);
-
-    const dot = new THREE.Mesh(
-      new THREE.SphereGeometry(0.045 * scale, 14, 14),
-      new THREE.MeshBasicMaterial({ color: accent ? 0xe8c378 : 0xc19a4a })
-    );
-    dot.position.y = stemH;
-    group.add(dot);
-
-    const base = new THREE.Mesh(
-      new THREE.CircleGeometry(0.028 * scale, 16),
-      new THREE.MeshBasicMaterial({ color: 0xd9ae65, transparent: true, opacity: 0.7, side: THREE.DoubleSide })
-    );
-    group.add(base);
-
-    return group;
-  }
-
-  // Soft ambient glow beneath the map
-  glow1 = new THREE.Mesh(
-    new THREE.SphereGeometry(0.5, 32, 32),
-    new THREE.MeshBasicMaterial({ color: 0xd9ae65, transparent: true, opacity: 0.16 })
+  // Central "subject" node
+  central = new THREE.Mesh(
+    new THREE.SphereGeometry(0.22, 32, 32),
+    new THREE.MeshBasicMaterial({ color: 0xe8c378 })
   );
-  glow1.scale.set(3.2, 0.4, 3.2);
-  glow1.position.y = -0.3;
+  scene.add(central);
+
+  glow1 = new THREE.Mesh(
+    new THREE.SphereGeometry(0.4, 32, 32),
+    new THREE.MeshBasicMaterial({ color: 0xd9ae65, transparent: true, opacity: 0.22 })
+  );
   scene.add(glow1);
 
   glow2 = new THREE.Mesh(
-    new THREE.SphereGeometry(0.9, 32, 32),
-    new THREE.MeshBasicMaterial({ color: 0xd9ae65, transparent: true, opacity: 0.06 })
+    new THREE.SphereGeometry(0.75, 32, 32),
+    new THREE.MeshBasicMaterial({ color: 0xd9ae65, transparent: true, opacity: 0.07 })
   );
-  glow2.scale.set(4.4, 0.5, 4.4);
-  glow2.position.y = -0.3;
   scene.add(glow2);
 
-  // Map group — an extruded 3D India silhouette, tilted like a table-top map
+  // Orbital node rings
   nodeGroup = new THREE.Group();
-  nodeGroup.rotation.x = -0.95;
-  nodeGroup.rotation.z = -0.04;
   scene.add(nodeGroup);
 
-  // Build the India silhouette as a flat 2D outline, then extrude it for depth
-  const SCALE = 0.011;
-  const tx = x => (x - 150) * SCALE;
-  const ty = y => (y - 190) * SCALE;
+  const categories = [
+    { color: 0xe8c378, count: 10, radius: 2.4, ySpeed: 0.0012, tilt: 0.0 },
+    { color: 0xd9ae65, count: 8,  radius: 3.0, ySpeed: -0.0009, tilt: 0.3 },
+    { color: 0xc19a4a, count: 6,  radius: 3.6, ySpeed: 0.0007, tilt: -0.25 }
+  ];
 
-  const indiaShape = new THREE.Shape();
-  indiaShape.moveTo(tx(130), ty(8));
-  indiaShape.bezierCurveTo(tx(150), ty(5), tx(170), ty(10), tx(178), ty(22));
-  indiaShape.bezierCurveTo(tx(190), ty(30), tx(205), ty(35), tx(215), ty(42));
-  indiaShape.lineTo(tx(235), ty(55));
-  indiaShape.bezierCurveTo(tx(250), ty(65), tx(258), ty(78), tx(252), ty(92));
-  indiaShape.bezierCurveTo(tx(270), ty(88), tx(285), ty(95), tx(292), ty(108));
-  indiaShape.bezierCurveTo(tx(288), ty(122), tx(270), ty(128), tx(255), ty(122));
-  indiaShape.bezierCurveTo(tx(248), ty(135), tx(252), ty(148), tx(240), ty(155));
-  indiaShape.lineTo(tx(215), ty(150));
-  indiaShape.bezierCurveTo(tx(210), ty(170), tx(205), ty(190), tx(200), ty(215));
-  indiaShape.bezierCurveTo(tx(198), ty(235), tx(195), ty(255), tx(190), ty(275));
-  indiaShape.bezierCurveTo(tx(185), ty(290), tx(178), ty(300), tx(170), ty(312));
-  indiaShape.bezierCurveTo(tx(162), ty(322), tx(155), ty(330), tx(148), ty(338));
-  indiaShape.bezierCurveTo(tx(142), ty(330), tx(136), ty(320), tx(130), ty(308));
-  indiaShape.bezierCurveTo(tx(122), ty(292), tx(118), ty(275), tx(114), ty(258));
-  indiaShape.bezierCurveTo(tx(110), ty(240), tx(108), ty(222), tx(105), ty(205));
-  indiaShape.bezierCurveTo(tx(100), ty(188), tx(96), ty(170), tx(92), ty(152));
-  indiaShape.bezierCurveTo(tx(85), ty(138), tx(75), ty(128), tx(65), ty(120));
-  indiaShape.bezierCurveTo(tx(55), ty(112), tx(48), ty(100), tx(45), ty(85));
-  indiaShape.bezierCurveTo(tx(42), ty(72), tx(48), ty(62), tx(58), ty(58));
-  indiaShape.bezierCurveTo(tx(65), ty(50), tx(72), ty(42), tx(78), ty(32));
-  indiaShape.bezierCurveTo(tx(88), ty(22), tx(100), ty(14), tx(112), ty(10));
-  indiaShape.closePath();
+  const lineMat = new THREE.LineBasicMaterial({ color: 0xd9ae65, transparent: true, opacity: 0.18 });
 
-  // Flat map cutout — same clean navy fill + thin gold coastline as the original 2D design,
-  // just sitting inside the tilted 3D scene rather than a chunky extruded block
-  const indiaGeo = new THREE.ShapeGeometry(indiaShape);
-  const indiaMesh = new THREE.Mesh(indiaGeo, new THREE.MeshBasicMaterial({ color: 0x13294d, side: THREE.DoubleSide }));
-  nodeGroup.add(indiaMesh);
+  categories.forEach((cat, ci) => {
+    const ringGroup = new THREE.Group();
+    for (let i = 0; i < cat.count; i++) {
+      const phi = Math.acos(-1 + (2 * (i + 0.5)) / cat.count);
+      const theta = Math.sqrt(cat.count * Math.PI) * phi + ci * 0.7;
+      const x = cat.radius * Math.cos(theta) * Math.sin(phi);
+      const y = cat.radius * Math.sin(theta) * Math.sin(phi);
+      const z = cat.radius * Math.cos(phi);
 
-  // Thin gold coastline, traced from the same curve points as the fill
-  const outlinePts = indiaShape.getPoints(120).map(p => new THREE.Vector3(p.x, p.y, 0.008));
-  const outlineGeo = new THREE.BufferGeometry().setFromPoints(outlinePts);
-  const rim = new THREE.LineLoop(outlineGeo, new THREE.LineBasicMaterial({ color: 0xc19a4a, transparent: true, opacity: 0.8 }));
-  nodeGroup.add(rim);
+      const node = new THREE.Mesh(
+        new THREE.SphereGeometry(0.06, 16, 16),
+        new THREE.MeshBasicMaterial({ color: cat.color })
+      );
+      node.position.set(x, y, z);
+      ringGroup.add(node);
 
-  const SURFACE_Z = 0.01;
+      const halo = new THREE.Mesh(
+        new THREE.SphereGeometry(0.13, 16, 16),
+        new THREE.MeshBasicMaterial({ color: cat.color, transparent: true, opacity: 0.18 })
+      );
+      halo.position.copy(node.position);
+      ringGroup.add(halo);
 
-  // Pins stand up from the map surface — rotated so their local "up" points along +Z (the map's normal)
-  const pins = [];
-  function placePin(px, py, scale, accent) {
-    const pin = createPin(scale, accent);
-    pin.rotation.x = Math.PI / 2;
-    pin.position.set(tx(px), ty(py), SURFACE_Z);
-    pin.userData.phase = Math.random() * Math.PI * 2;
-    pin.userData.baseZ = pin.position.z;
-    nodeGroup.add(pin);
-    pins.push(pin);
-    return pin;
+      const lineGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0), new THREE.Vector3(x,y,z)]);
+      ringGroup.add(new THREE.Line(lineGeo, lineMat));
+    }
+    ringGroup.userData.ySpeed = cat.ySpeed;
+    ringGroup.rotation.x = cat.tilt;
+    ringGroup.rotation.z = cat.tilt * 0.5;
+    nodeGroup.add(ringGroup);
+  });
+
+  // Inter-node cross connections
+  const interMat = new THREE.LineBasicMaterial({ color: 0xd9ae65, transparent: true, opacity: 0.1 });
+  for (let i = 0; i < 12; i++) {
+    const r1 = 2.4 + Math.random() * 1.2;
+    const r2 = 2.4 + Math.random() * 1.2;
+    const p1 = new THREE.Vector3((Math.random()-0.5)*r1*1.6, (Math.random()-0.5)*r1*1.6, (Math.random()-0.5)*r1*1.6);
+    const p2 = new THREE.Vector3((Math.random()-0.5)*r2*1.6, (Math.random()-0.5)*r2*1.6, (Math.random()-0.5)*r2*1.6);
+    const lg = new THREE.BufferGeometry().setFromPoints([p1, p2]);
+    nodeGroup.add(new THREE.Line(lg, interMat));
   }
 
-  // Three labelled category pins — Property, Corporate, Intellectual Property
-  placePin(150, 65, 1.3, true);
-  placePin(195, 145, 1.3, true);
-  placePin(140, 240, 1.3, true);
-
-  nodeGroup.userData.pins = pins;
-
-  // Particle field (ambient depth behind the map)
-  const pCount = 220;
+  // Particle field
+  const pCount = 280;
   const pg = new THREE.BufferGeometry();
   const pos = new Float32Array(pCount * 3);
   for (let i = 0; i < pCount; i++) {
-    const r = 6 + Math.random() * 9;
+    const r = 7 + Math.random() * 9;
     const t = Math.random() * Math.PI * 2;
     const p = Math.acos(2 * Math.random() - 1);
     pos[i*3]   = r * Math.sin(p) * Math.cos(t);
-    pos[i*3+1] = r * Math.sin(p) * Math.sin(t) * 0.6 - 1;
+    pos[i*3+1] = r * Math.sin(p) * Math.sin(t);
     pos[i*3+2] = r * Math.cos(p);
   }
   pg.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-  particles = new THREE.Points(pg, new THREE.PointsMaterial({ color: 0xd9ae65, size: 0.022, transparent: true, opacity: 0.4 }));
+  particles = new THREE.Points(pg, new THREE.PointsMaterial({ color: 0xd9ae65, size: 0.025, transparent: true, opacity: 0.45 }));
   scene.add(particles);
 
   applyScenePosition();
@@ -978,24 +999,18 @@ function animate() {
   const t = Date.now() * 0.001;
 
   if (!reducedMotion) {
-    // Gentle sway instead of a full continuous spin — the map stays facing forward
-    nodeGroup.rotation.y = Math.sin(t * 0.25) * 0.12;
+    nodeGroup.children.forEach(ring => { ring.rotation.y += ring.userData.ySpeed || 0.001; });
+    nodeGroup.rotation.y += 0.0014;
 
-    (nodeGroup.userData.pins || []).forEach(pin => {
-      pin.position.z = pin.userData.baseZ + Math.sin(t * 1.3 + pin.userData.phase) * 0.03;
-    });
-
-    glow1.scale.x = 3.2 + Math.sin(t * 1.5) * 0.3;
-    glow1.scale.z = 3.2 + Math.sin(t * 1.5) * 0.3;
-    glow2.scale.x = 4.4 + Math.sin(t * 1.0 + 1) * 0.3;
-    glow2.scale.z = 4.4 + Math.sin(t * 1.0 + 1) * 0.3;
+    glow1.scale.setScalar(1 + Math.sin(t * 1.5) * 0.18);
+    glow2.scale.setScalar(1 + Math.sin(t * 1.0 + 1) * 0.12);
 
     particles.rotation.y += 0.0003;
 
     targetX += (mouseX - targetX) * 0.04;
     targetY += (mouseY - targetY) * 0.04;
-    scene.rotation.y = targetX * 0.12;
-    scene.rotation.x = targetY * 0.06;
+    scene.rotation.y = targetX * 0.35;
+    scene.rotation.x = targetY * 0.25;
   }
 
   renderer.render(scene, camera);
@@ -1020,7 +1035,7 @@ window.addEventListener('resize', () => {
   if (!camera || !renderer) return;
   const w = canvas.clientWidth, h = canvas.clientHeight;
   camera.aspect = w / h;
-  camera.position.z = isMobile() ? 6 : 6.5;
+  camera.position.z = isMobile() ? 7.5 : 9;
   camera.updateProjectionMatrix();
   renderer.setSize(w, h);
   applyScenePosition();
@@ -1041,7 +1056,7 @@ window.addEventListener('load', () => {
 });
 
 // Scroll reveal
-const reveals = document.querySelectorAll('.section, .service, .principle, .finding, .coverage-item, .step, .source-stack-item, .pillar, .float-card, .about-visual, .coverage-visual');
+const reveals = document.querySelectorAll('.section, .service, .principle, .finding, .coverage-item, .step, .source-stack-item, .pillar, .about-visual, .coverage-visual');
 const io = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -1063,6 +1078,26 @@ document.querySelectorAll('.service').forEach(card => {
   });
   card.addEventListener('mouseleave', () => { card.style.transform = ''; });
 });
+</script>
+
+<script>
+// Mobile nav toggle — deliberately outside the module script above so it
+// keeps working even if the Three.js CDN import fails or is blocked.
+(function () {
+  const navToggle = document.getElementById('nav-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (!navToggle || !mobileMenu) return;
+  navToggle.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    navToggle.classList.toggle('open', isOpen);
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    navToggle.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+})();
 </script>
 </body>
 </html>
