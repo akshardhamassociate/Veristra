@@ -183,6 +183,10 @@ a{text-decoration:none;color:inherit}
 /* Coverage */
 .coverage-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
 .coverage-card{background:#fff;padding:48px;border-top:6px solid var(--gold);box-shadow:0 20px 50px rgba(8,28,54,.08);position:relative}
+.scope-facts{margin-top:36px;padding-top:28px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:18px}
+.scope-fact{display:flex;align-items:baseline;gap:14px}
+.scope-fact b{font-family:'Fraunces',serif;font-size:22px;color:var(--gold);font-weight:500;min-width:64px}
+.scope-fact span{font-size:12.5px;color:var(--muted)}
 .coverage-card .big{display:block;font-family:'Fraunces',serif;font-size:64px;font-weight:500;letter-spacing:-.04em;line-height:1;margin:8px 0 16px}
 .coverage-card p{font-size:14px;line-height:1.7;color:var(--muted)}
 .coverage-visual{width:100%;height:340px;margin-bottom:28px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--navy),var(--navy-deep));position:relative;overflow:hidden}
@@ -289,6 +293,31 @@ a{text-decoration:none;color:inherit}
   .report-stack{transform:rotateY(0) rotateX(0)}
   .legal{flex-direction:column}
 }
+/* ===== Legal page content ===== */
+.legal-hero{background:var(--navy);color:#fff;padding:64px 0 40px}
+.legal-hero .eyebrow{color:var(--gold-light);justify-content:flex-start}
+.legal-hero .eyebrow::before{background:var(--gold-light)}
+.legal-hero h1{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(32px,4vw,48px);letter-spacing:-.02em;margin:16px 0 10px}
+.legal-hero p{color:#b7c2d1;font-size:14px;margin:0}
+.legal-wrap{width:min(820px,calc(100% - 48px));margin:auto}
+.legal-body{padding:56px 0 100px}
+.legal-updated{font-size:12px;color:var(--muted);letter-spacing:.04em;margin-bottom:36px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.legal-body h2{font-family:'Fraunces',serif;font-weight:500;font-size:21px;color:var(--navy);margin:44px 0 14px;letter-spacing:-.01em}
+.legal-body h2:first-of-type{margin-top:0}
+.legal-body p{font-size:14.5px;line-height:1.85;color:#3a4656;margin:0 0 16px}
+.legal-body ul{margin:0 0 16px;padding-left:20px}
+.legal-body li{font-size:14.5px;line-height:1.8;color:#3a4656;margin-bottom:8px}
+.legal-body strong{color:var(--navy);font-weight:600}
+.legal-contact{margin-top:20px;background:var(--cream);border-left:3px solid var(--gold);padding:20px 24px}
+.legal-contact p{margin:0 0 6px;font-size:14px}
+.legal-contact p:last-child{margin-bottom:0}
+.legal-note{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);line-height:1.7}
+
+
+.site-view{}
+.legal-back{display:inline-flex;align-items:center;gap:8px;color:var(--gold-light);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:18px;cursor:pointer}
+.legal-back:hover{color:#fff}
+
 </style>
 </head>
 <body>
@@ -316,7 +345,7 @@ a{text-decoration:none;color:inherit}
   </div>
 </nav>
 
-<main id="top">
+<main id="top" class="site-view">
 
   <section class="hero">
     <div class="hero-bg"></div>
@@ -573,12 +602,12 @@ a{text-decoration:none;color:inherit}
         <div class="finding">
           <div class="finding-num">07</div>
           <div class="finding-label">Immovable assets identified across three states</div>
-          <div class="finding-note">Including historical transfers</div>
+          
         </div>
         <div class="finding">
           <div class="finding-num">02</div>
           <div class="finding-label">Movable assets identified and profiled</div>
-          <div class="finding-note">Vehicles, shares & other holdings</div>
+          <div class="finding-note">Vehicles, & Other holdings</div>
         </div>
         <div class="finding">
           <div class="finding-num">04</div>
@@ -653,6 +682,11 @@ a{text-decoration:none;color:inherit}
         <div class="eyebrow">Scope</div>
         <span class="big">Pan-India</span>
         <p>Searches are conducted across applicable jurisdictions using online accessible records. The scope is fully desktop-based and excludes physical verification, field visits or subject contact.</p>
+        <div class="scope-facts">
+          <div class="scope-fact"><b>10&ndash;14</b><span>Working-day turnaround</span></div>
+          <div class="scope-fact"><b>100%</b><span>Desktop-based research</span></div>
+          <div class="scope-fact"><b>Zero</b><span>Field visits or subject contact</span></div>
+        </div>
       </div>
       <div>
         <div class="coverage-visual reveal">
@@ -817,6 +851,137 @@ a{text-decoration:none;color:inherit}
 
 </main>
 
+<div id="view-privacy" class="site-view" style="display:none">
+  <section class="legal-hero">
+    <div class="wrap">
+      <a class="legal-back" data-view="top" href="#top">&larr; Back to Veristra</a>
+      <div class="eyebrow">Information</div>
+      <h1>Privacy Policy</h1>
+      <p>How Veristra Asset Intelligence collects, uses and protects your information.</p>
+    </div>
+  </section>
+  <section class="legal-body">
+    <div class="legal-wrap">
+      <div class="legal-updated">Last updated: August 2026</div>
+
+      <p>Veristra Asset Intelligence (&ldquo;Veristra&rdquo;, &ldquo;the firm&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo; or &ldquo;us&rdquo;) provides digital-first, records-based asset tracing reports for institutions, legal counsel and corporate clients. This Policy explains what information we collect when you visit this website, request a consultation, or engage us for a search, and how that information is used, stored and protected. By using this website or submitting a request to us, you agree to the practices described below.</p>
+
+      <h2>1. Information We Collect</h2>
+      <p>We collect information in two distinct contexts, which we treat differently:</p>
+      <ul>
+        <li><strong>Client information</strong> &mdash; the details you provide us directly, such as your name, organisation, email address, phone number, preferred consultation date and the nature of your requirement, submitted through our consultation form or by email.</li>
+        <li><strong>Engagement information</strong> &mdash; once a search is scoped and confirmed, the identifying details of the search subject (individual or company name, jurisdiction) that you provide to define the engagement, which we use solely to conduct that specific search.</li>
+        <li><strong>Website usage data</strong> &mdash; limited technical information such as browser type, device type and general usage patterns, collected to keep the website functioning correctly.</li>
+      </ul>
+
+      <h2>2. How We Use Information</h2>
+      <p>Client and engagement information is used only to respond to your enquiry, scope and deliver the requested report, maintain necessary business and compliance records, and communicate with you about an active or prospective engagement. We do not use search-subject information for any purpose beyond the specific engagement it was collected for.</p>
+
+      <h2>3. Confidentiality of Engagements</h2>
+      <p>Every engagement is treated as confidential. Details of a client's request &mdash; including the identity of any search subject and the findings of a report &mdash; are accessible only to the personnel directly involved in preparing that report, and are not shared with any other client, third party, or used in any other engagement.</p>
+
+      <h2>4. Cookies</h2>
+      <p>This website may use minimal cookies or similar technologies to support basic functionality. No behavioural advertising or third-party tracking cookies are used. You can restrict cookies through your browser settings; this may affect certain website features.</p>
+
+      <h2>5. Disclosure of Information</h2>
+      <p>We do not sell, rent or trade personal information. We may share information with personnel or service providers directly supporting an engagement (for example, secure email or document-delivery tools), and only to the extent necessary. We may also disclose information where required by law, regulation, or a valid order from a court or governmental authority.</p>
+
+      <h2>6. Data Security</h2>
+      <p>We apply reasonable administrative and technical safeguards to protect information from unauthorised access, loss or misuse. No method of electronic transmission or storage is completely secure, and while we work to protect your information, we cannot guarantee absolute security.</p>
+
+      <h2>7. Data Retention</h2>
+      <p>We retain client and engagement information only as long as reasonably necessary to deliver the engagement, maintain required business records, and meet legal or compliance obligations. Information no longer required is securely deleted or archived with restricted access.</p>
+
+      <h2>8. Your Rights</h2>
+      <p>Where applicable law permits, you may request access to, correction of, or deletion of personal information we hold about you, or ask us to stop using it for a stated purpose. You can make such a request using the contact details below; we may need to verify your identity before acting on it.</p>
+
+      <h2>9. Third-Party Links</h2>
+      <p>This website may link to third-party websites for reference. Veristra is not responsible for the content or privacy practices of external sites, and we encourage you to review their policies separately.</p>
+
+      <h2>10. Changes to This Policy</h2>
+      <p>We may revise this Privacy Policy from time to time to reflect changes in our practices or in applicable law. Any update will be posted on this page with a revised &ldquo;Last updated&rdquo; date.</p>
+
+      <h2>Contact Us</h2>
+      <p>For any question, request, or concern relating to this Privacy Policy, you may reach us at:</p>
+      <div class="legal-contact">
+        <p><strong>Veristra Asset Intelligence</strong></p>
+        <p>Email: <a href="mailto:info@veristra.in" style="color:var(--navy);font-weight:600">info@veristra.in</a></p>
+      </div>
+
+      <p class="legal-note">This page is a general statement of our privacy practices and does not form part of, or vary, the terms of any specific engagement letter or agreement, which shall govern in the event of any conflict.</p>
+    </div>
+  </section>
+</div>
+
+<div id="view-terms" class="site-view" style="display:none">
+  <section class="legal-hero">
+    <div class="wrap">
+      <a class="legal-back" data-view="top" href="#top">&larr; Back to Veristra</a>
+      <div class="eyebrow">Information</div>
+      <h1>Terms of Use</h1>
+      <p>Please read these terms carefully before using this website or engaging our services.</p>
+    </div>
+  </section>
+  <section class="legal-body">
+    <div class="legal-wrap">
+      <div class="legal-updated">Last updated: August 2026</div>
+
+      <p><strong>Veristra Asset Intelligence</strong> (&ldquo;Veristra&rdquo;, &ldquo;the firm&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo; or &ldquo;us&rdquo;) makes this website available subject to these Terms of Use (&ldquo;Terms&rdquo;). By accessing or using this website, you agree to be bound by these Terms. If you do not agree, please discontinue use of this website.</p>
+
+      <h2>1. Use of This Website</h2>
+      <p>This website provides general information about Veristra and our services. You agree to use it only for lawful purposes, and not to interfere with its operation, attempt unauthorised access to any part of it, or transmit harmful or unlawful content through it.</p>
+
+      <h2>2. Nature of Our Services</h2>
+      <p>Veristra provides Individual Asset Tracing (IAT) and Company Asset Tracing (CAT) reports, prepared entirely through digital-first, desktop-based research across government-backed and proprietary record sources. We do not undertake physical verification, surveillance, or field investigation of any kind.</p>
+      <p>Findings in every report are categorised strictly as <strong>confirmed</strong> or <strong>indicative</strong>, in line with the evidentiary standard of the underlying source. Reports reflect only what is available in the accessed records at the time of search; they are not a certification that no other asset, interest or record exists. The scope, timeline, fees and deliverables of any specific engagement are governed by the written confirmation exchanged for that engagement, not by this website.</p>
+
+      <h2>3. No Legal, Financial or Investment Advice</h2>
+      <p>Content on this website, and the reports we deliver, are provided for informational purposes to support your own due diligence, recovery or litigation-support process. They do not constitute legal, financial or investment advice, and should not be relied upon as the sole basis for any decision. You should obtain independent professional advice appropriate to your specific circumstances.</p>
+
+      <h2>4. Lawful Use of Our Services</h2>
+      <p>By engaging Veristra, you confirm that you have a legitimate purpose and lawful basis for requesting a search &mdash; such as due diligence, recovery, litigation support, or risk assessment &mdash; and that you will not use our services or any report to harass, stalk, discriminate against, or otherwise cause harm to any individual or entity. We reserve the right to decline or discontinue any engagement we reasonably believe is not being sought for a legitimate purpose.</p>
+
+      <h2>5. Confidentiality</h2>
+      <p>We treat every engagement, including the identity of any search subject and the contents of any report, as confidential, and will not disclose it to any party other than the client, except where required by law or necessary to protect our legal rights.</p>
+
+      <h2>6. Intellectual Property</h2>
+      <p>All content on this website &mdash; including text, graphics, logos and design &mdash; is owned by or licensed to Veristra. You may view this content for personal, non-commercial reference only, and may not copy, reproduce, or distribute it without our prior written consent. Reports delivered as part of an engagement are licensed to the client for their internal and professional use in connection with the matter for which they were commissioned, and may not be resold or redistributed without our consent.</p>
+
+      <h2>7. Accuracy and Limitations</h2>
+      <p>We take reasonable care in conducting each search, but official and public record databases can be incomplete, delayed, or contain errors outside our control. Veristra does not guarantee that a report is exhaustive or free of such underlying inaccuracies, and makes no warranty beyond the evidentiary standard disclosed for each finding (confirmed or indicative).</p>
+
+      <h2>8. Third-Party Links</h2>
+      <p>This website may link to third-party websites for convenience or reference. We do not control and are not responsible for the content, accuracy or privacy practices of any linked site.</p>
+
+      <h2>9. Limitation of Liability</h2>
+      <p>To the maximum extent permitted by law, Veristra and its personnel shall not be liable for any indirect, incidental or consequential loss arising from use of this website or reliance on its content. Liability in connection with any specific engagement is governed solely by the terms of the written confirmation for that engagement.</p>
+
+      <h2>10. Indemnification</h2>
+      <p>You agree to indemnify Veristra against any claim, loss or liability arising from your misuse of this website, breach of these Terms, or unlawful use of any report or finding we provide.</p>
+
+      <h2>11. Privacy</h2>
+      <p>Use of this website and our services involves the collection of certain information, handled in accordance with our <a data-view="view-privacy" href="#privacy-policy" style="color:var(--navy);font-weight:600">Privacy Policy</a>, which should be read together with these Terms.</p>
+
+      <h2>12. Governing Law</h2>
+      <p>These Terms are governed by the laws of India, and any dispute arising from them shall be subject to the exclusive jurisdiction of the competent courts in India.</p>
+
+      <h2>13. Changes to These Terms</h2>
+      <p>We may update these Terms from time to time. Continued use of this website after an update constitutes acceptance of the revised Terms, which will carry a new &ldquo;Last updated&rdquo; date.</p>
+
+      <h2 id="disclaimer">Disclaimer</h2>
+      <p>Veristra is a desktop-based research service. We do not undertake field investigation, surveillance, or direct contact with any search subject. Reports are prepared from publicly and officially accessible records as available at the time of search, and findings are presented strictly as confirmed or indicative in line with the evidentiary standard of the underlying source.</p>
+
+      <h2>Contact Us</h2>
+      <p>For any question regarding these Terms, you may reach us at:</p>
+      <div class="legal-contact">
+        <p><strong>Veristra Asset Intelligence</strong></p>
+        <p>Email: <a href="mailto:info@veristra.in" style="color:var(--navy);font-weight:600">info@veristra.in</a></p>
+      </div>
+    </div>
+  </section>
+</div>
+
+
 <footer class="footer">
   <div class="wrap">
     <div class="footer-grid">
@@ -833,10 +998,8 @@ a{text-decoration:none;color:inherit}
       </div>
       <div>
         <h4>Information</h4>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
-        <a href="#">Disclaimer</a>
-        <a href="#contact">Download Brochure</a>
+        <a href="#privacy-policy" data-view="view-privacy">Privacy Policy</a>
+        <a href="#terms-of-use" data-view="view-terms">Terms of Use</a>
       </div>
       <div>
         <h4>Contact</h4>
@@ -1081,6 +1244,45 @@ document.querySelectorAll('.service').forEach(card => {
 </script>
 
 <script>
+// In-page view router — Privacy Policy / Terms of Use live inside this same
+// file as hidden sections, so they always work even if this HTML is the only
+// file present (no dependency on separate privacy-policy.html / terms-of-use.html files).
+(function () {
+  function showView(id) {
+    document.querySelectorAll('.site-view').forEach(v => {
+      v.style.display = (v.id === id) ? '' : 'none';
+    });
+  }
+  function idForHash(h) {
+    if (h === 'privacy-policy') return 'view-privacy';
+    if (h === 'terms-of-use' || h === 'disclaimer') return 'view-terms';
+    return 'top';
+  }
+  function goTo(hash, smooth) {
+    showView(idForHash(hash));
+    requestAnimationFrame(() => {
+      const el = hash ? document.getElementById(hash) : null;
+      if (el) el.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
+      else window.scrollTo(0, 0);
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const hash = a.getAttribute('href').slice(1);
+      if (!hash) return;
+      e.preventDefault();
+      history.pushState(null, '', '#' + hash);
+      goTo(hash, true);
+    });
+  });
+
+  window.addEventListener('popstate', () => goTo(location.hash.replace('#', ''), false));
+
+  // Support direct deep-links like index.html#privacy-policy on first load
+  goTo(location.hash.replace('#', ''), false);
+})();
+
 // Mobile nav toggle — deliberately outside the module script above so it
 // keeps working even if the Three.js CDN import fails or is blocked.
 (function () {
